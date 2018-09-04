@@ -41,6 +41,7 @@ public class Message {
     protected Uri videoUri;
     protected Uri audioUri;
     protected int indexPosition;
+    protected List<CarouselCell> list_carousel;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -52,7 +53,8 @@ public class Message {
         LeftVideo,
         RightVideo,
         LeftAudio,
-        RightAudio
+        RightAudio,
+        LeftCarousel
     }
 
     public Message(){
@@ -153,6 +155,14 @@ public class Message {
 
     public void setVideoUri(Uri videoUri) {
         this.videoUri = videoUri;
+    }
+
+    public List<CarouselCell> getList_carousel() {
+        return list_carousel;
+    }
+
+    public void setList_carousel(List<CarouselCell> list_carousel) {
+        this.list_carousel = list_carousel;
     }
 }
 

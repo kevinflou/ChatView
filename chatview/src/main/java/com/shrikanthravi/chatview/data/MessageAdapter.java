@@ -31,6 +31,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.OvershootInterpolator;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +53,7 @@ import com.shrikanthravi.chatview.activities.ImageFFActivity;
 import com.shrikanthravi.chatview.activities.VideoFFActivity;
 import com.shrikanthravi.chatview.utils.FontChanger;
 
+import com.shrikanthravi.chatview.widget.ChatView;
 import com.silencedut.expandablelayout.ExpandableLayout;
 import com.squareup.picasso.Picasso;
 
@@ -62,6 +64,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Handler;
 
+
+import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 
 import static android.content.ContentValues.TAG;
 
@@ -160,6 +164,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 type = 10;
                 break;
             }
+            case LeftCarousel: {
+                type = 999;
+                break;
+            }
         }
         if(type==0){
             throw new RuntimeException("Set Message Type ( Message Type is Null )");
@@ -238,10 +246,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                                 viewHolder = new LeftAudioViewHolder(view);
                                             }
                                             else{
-                                                View view = LayoutInflater.from(parent.getContext())
-                                                        .inflate(R.layout.right_audio_layout, parent, false);
-                                                viewHolder = new RightAudioViewHolder(view);
+                                                if(viewType == 999){
+                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                                    viewHolder = new LeftCarouselViewHolder(view);
+                                                }
+                                                else{
+                                                    View view = LayoutInflater.from(parent.getContext())
+                                                            .inflate(R.layout.right_audio_layout, parent, false);
+                                                    viewHolder = new RightAudioViewHolder(view);
+                                                }
                                             }
+
 
                                         }
 
@@ -265,7 +280,20 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return viewHolder;
     }
 
+    protected class LeftCarouselViewHolder extends RecyclerView.ViewHolder {
+        public RecyclerView carouselRV;
+        public List<CarouselCell> list_cC;
 
+        public LeftCarouselViewHolder(View view) {
+            super(view);
+            carouselRV = view.findViewById(R.id.carouselRV);
+            setAdapterRecyclerView(carouselRV);
+        }
+
+        public void setAdapterRecyclerView(RecyclerView rV){
+
+        }
+    }
 
     protected class LeftTextViewHolder extends RecyclerView.ViewHolder {
 
@@ -669,6 +697,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public CardView leftIVCV;
         public ImageView leftIV;
         public LinearLayout videoLL;
+        public RecyclerView carouselRV;
 
         public LeftVideoViewHolder(View view) {
             super(view);
@@ -681,6 +710,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
             leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
             videoLL = view.findViewById(R.id.videoLL);
+            carouselRV = view.findViewById(R.id.carouselRV);
 
             setBackgroundColor(leftBubbleLayoutColor);
             setSenderNameTextColor(senderNameTextColor);
@@ -1231,102 +1261,55 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
 
-
         final Message message = messageList.get(position);
         messageList.get(position).setIndexPosition(position);
+        if (holder instanceof LeftCarouselViewHolder) {
+            final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
+            System.out.println(message.getList_carousel().size());
+            holder1.list_cC = message.getList_carousel();
+            RecyclerView rV = holder1.carouselRV;
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,true);
+            layoutManager.setStackFromEnd(true);
+            rV.setLayoutManager(layoutManager);
+            rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+            CarouselAdapter cA = new CarouselAdapter(holder1.list_cC,context,rV);
+            rV.setAdapter(cA);
+        } else {
+            if (holder instanceof LeftTextViewHolder) {
+                final LeftTextViewHolder holder1 = (LeftTextViewHolder) holder;
+                holder1.leftTV.setText(message.getBody());
+                holder1.leftTimeTV.setText(message.getTime());
 
-
-        if(holder instanceof LeftTextViewHolder){
-            final LeftTextViewHolder holder1 =(LeftTextViewHolder) holder;
-            holder1.leftTV.setText(message.getBody());
-            holder1.leftTimeTV.setText(message.getTime());
-
-            if(message.getUserIcon()!=null) {
-                Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
-            }
-            holder1.senderNameTV.setText(message.getUserName());
-        }
-        else{
-            if(holder instanceof RightTextViewHolder){
-                final RightTextViewHolder holder1 =(RightTextViewHolder) holder;
-                holder1.rightTV.setText(message.getBody());
-                holder1.rightTimeTV.setText(message.getTime());
-                if(message.getUserIcon()!=null) {
-                    Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                if (message.getUserIcon() != null) {
+                    Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
                 }
                 holder1.senderNameTV.setText(message.getUserName());
-            }
-            else{
-                if(holder instanceof LeftImageViewHolder){
-                    final LeftImageViewHolder holder1 =(LeftImageViewHolder) holder;
-
-                    if(message.getUserIcon()!=null) {
-                        Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
+            } else {
+                if (holder instanceof RightTextViewHolder) {
+                    final RightTextViewHolder holder1 = (RightTextViewHolder) holder;
+                    holder1.rightTV.setText(message.getBody());
+                    holder1.rightTimeTV.setText(message.getTime());
+                    if (message.getUserIcon() != null) {
+                        Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
                     }
                     holder1.senderNameTV.setText(message.getUserName());
-                    if (message.getImageList().get(0) != null && !message.getImageList().get(0).equals("")) {
-                        final File image = DiskCacheUtils.findInCache(message.getImageList().get(0).toString(), imageLoader.getDiskCache());
-                        if (image!= null && image.exists()) {
-                            Picasso.with(context).load(image).into(holder1.leftIV);
-                        } else {
-                            imageLoader.loadImage(message.getImageList().get(0).toString(), new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String s, View view) {
-                                    holder1.leftIV.setImageBitmap(null);
-                                }
+                } else {
+                    if (holder instanceof LeftImageViewHolder) {
+                        final LeftImageViewHolder holder1 = (LeftImageViewHolder) holder;
 
-                                @Override
-                                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                }
-
-                                @Override
-                                public void onLoadingComplete(String s, View view, final Bitmap bitmap) {
-                                    Picasso.with(context).load(s).into(holder1.leftIV);
-
-                                }
-
-                                @Override
-                                public void onLoadingCancelled(String s, View view) {
-
-                                }
-                            });
-                        }
-                    }else {
-                        holder1.leftIV.setImageBitmap(null);
-                    }
-
-                    holder1.leftTimeTV.setText(message.getTime());
-
-                    holder1.leftIV.setTransitionName("photoTransition");
-                    holder1.leftIV.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(context,ImageFFActivity.class);
-                            intent.putExtra("photoURI",message.getImageList().get(0).toString());
-                            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.leftIV,holder1.leftIV.getTransitionName());
-                            context.startActivity(intent, optionsCompat.toBundle());
-                        }
-                    });
-                }
-                else{
-                    if(holder instanceof RightImageViewHolder){
-                        final RightImageViewHolder holder1 =(RightImageViewHolder) holder;
-
-                        if(message.getUserIcon()!=null) {
-                            Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                        if (message.getUserIcon() != null) {
+                            Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
                         }
                         holder1.senderNameTV.setText(message.getUserName());
-
                         if (message.getImageList().get(0) != null && !message.getImageList().get(0).equals("")) {
                             final File image = DiskCacheUtils.findInCache(message.getImageList().get(0).toString(), imageLoader.getDiskCache());
-                            if (image!= null && image.exists()) {
-                                Picasso.with(context).load(image).into(holder1.rightIV);
+                            if (image != null && image.exists()) {
+                                Picasso.with(context).load(image).into(holder1.leftIV);
                             } else {
                                 imageLoader.loadImage(message.getImageList().get(0).toString(), new ImageLoadingListener() {
                                     @Override
                                     public void onLoadingStarted(String s, View view) {
-                                        holder1.rightIV.setImageBitmap(null);
+                                        holder1.leftIV.setImageBitmap(null);
                                     }
 
                                     @Override
@@ -1336,7 +1319,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                                     @Override
                                     public void onLoadingComplete(String s, View view, final Bitmap bitmap) {
-                                        Picasso.with(context).load(s).into(holder1.rightIV);
+                                        Picasso.with(context).load(s).into(holder1.leftIV);
 
                                     }
 
@@ -1346,153 +1329,168 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     }
                                 });
                             }
-                        }else {
-                            holder1.rightIV.setImageBitmap(null);
+                        } else {
+                            holder1.leftIV.setImageBitmap(null);
                         }
-                        holder1.rightIV.setTransitionName("photoTransition");
-                        holder1.rightIV.setOnClickListener(new View.OnClickListener() {
+
+                        holder1.leftTimeTV.setText(message.getTime());
+
+                        holder1.leftIV.setTransitionName("photoTransition");
+                        holder1.leftIV.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(context,ImageFFActivity.class);
-                                intent.putExtra("photoURI",message.getImageList().get(0).toString());
-                                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.rightIV,holder1.rightIV.getTransitionName());
+                                Intent intent = new Intent(context, ImageFFActivity.class);
+                                intent.putExtra("photoURI", message.getImageList().get(0).toString());
+                                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.leftIV, holder1.leftIV.getTransitionName());
                                 context.startActivity(intent, optionsCompat.toBundle());
                             }
                         });
-                        holder1.rightTimeTV.setText(message.getTime());
+                    } else {
 
-                    }
-                    else{
-                        if(holder instanceof LeftImagesViewHolder){
-                            final LeftImagesViewHolder holder1 =(LeftImagesViewHolder) holder;
+                        if (holder instanceof RightImageViewHolder) {
+                            final RightImageViewHolder holder1 = (RightImageViewHolder) holder;
 
-                            if(message.getUserIcon()!=null) {
-                                Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
+                            if (message.getUserIcon() != null) {
+                                Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
                             }
                             holder1.senderNameTV.setText(message.getUserName());
 
-                            List<String> imageList = new ArrayList<>();
-                            for(int i=0;i<message.getImageList().size();i++){
-                                imageList.add(message.getImageList().get(i).toString());
+                            if (message.getImageList().get(0) != null && !message.getImageList().get(0).equals("")) {
+                                final File image = DiskCacheUtils.findInCache(message.getImageList().get(0).toString(), imageLoader.getDiskCache());
+                                if (image != null && image.exists()) {
+                                    Picasso.with(context).load(image).into(holder1.rightIV);
+                                } else {
+                                    imageLoader.loadImage(message.getImageList().get(0).toString(), new ImageLoadingListener() {
+                                        @Override
+                                        public void onLoadingStarted(String s, View view) {
+                                            holder1.rightIV.setImageBitmap(null);
+                                        }
+
+                                        @Override
+                                        public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                                        }
+
+                                        @Override
+                                        public void onLoadingComplete(String s, View view, final Bitmap bitmap) {
+                                            Picasso.with(context).load(s).into(holder1.rightIV);
+
+                                        }
+
+                                        @Override
+                                        public void onLoadingCancelled(String s, View view) {
+
+                                        }
+                                    });
+                                }
+                            } else {
+                                holder1.rightIV.setImageBitmap(null);
                             }
-                            holder1.leftTimeTV.setText(message.getTime());
-
-                            holder1.leftCollageView
-                                    .photoMargin(8)
-                                    .photoPadding(0)
-                                    .backgroundColor(leftBubbleLayoutColor)
-                                    .useFirstAsHeader(false) // makes first photo fit device widtdh and use full line
-                                    .defaultPhotosForLine(2) // sets default photos number for line of photos (can be changed by program at runtime)
-                                    .useCards(true)// adds cardview backgrounds to all photos
-                                    .loadPhotos(imageList);
-
-                            holder1.leftCollageView.setTransitionName("photoTransition");
-                            holder1.leftCollageView.setOnPhotoClickListener(new CollageView.OnPhotoClickListener() {
+                            holder1.rightIV.setTransitionName("photoTransition");
+                            holder1.rightIV.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onPhotoClick(int i) {
-
-                                    Intent intent = new Intent(context,ImageFFActivity.class);
-                                    intent.putExtra("photoURI",message.getImageList().get(i).toString());
-                                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.leftCollageView,holder1.leftCollageView.getTransitionName());
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(context, ImageFFActivity.class);
+                                    intent.putExtra("photoURI", message.getImageList().get(0).toString());
+                                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.rightIV, holder1.rightIV.getTransitionName());
                                     context.startActivity(intent, optionsCompat.toBundle());
                                 }
                             });
-                        }
-                        else{
+                            holder1.rightTimeTV.setText(message.getTime());
 
-                            if(holder instanceof RightImagesViewHolder) {
-                                final RightImagesViewHolder holder1 = (RightImagesViewHolder) holder;
+                        } else {
+                            if (holder instanceof LeftImagesViewHolder) {
+                                final LeftImagesViewHolder holder1 = (LeftImagesViewHolder) holder;
 
-                                if(message.getUserIcon()!=null) {
-                                    Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                                if (message.getUserIcon() != null) {
+                                    Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
                                 }
                                 holder1.senderNameTV.setText(message.getUserName());
+
                                 List<String> imageList = new ArrayList<>();
                                 for (int i = 0; i < message.getImageList().size(); i++) {
                                     imageList.add(message.getImageList().get(i).toString());
                                 }
-                                holder1.rightTimeTV.setText(message.getTime());
-                                holder1.rightCollageView
+                                holder1.leftTimeTV.setText(message.getTime());
+
+                                holder1.leftCollageView
                                         .photoMargin(8)
                                         .photoPadding(0)
-                                        .backgroundColor(rightBubbleLayoutColor)
+                                        .backgroundColor(leftBubbleLayoutColor)
                                         .useFirstAsHeader(false) // makes first photo fit device widtdh and use full line
                                         .defaultPhotosForLine(2) // sets default photos number for line of photos (can be changed by program at runtime)
                                         .useCards(true)// adds cardview backgrounds to all photos
                                         .loadPhotos(imageList);
 
-                                holder1.rightCollageView.setTransitionName("photoTransition");
-                                holder1.rightCollageView.setOnPhotoClickListener(new CollageView.OnPhotoClickListener() {
+                                holder1.leftCollageView.setTransitionName("photoTransition");
+                                holder1.leftCollageView.setOnPhotoClickListener(new CollageView.OnPhotoClickListener() {
                                     @Override
                                     public void onPhotoClick(int i) {
 
                                         Intent intent = new Intent(context, ImageFFActivity.class);
                                         intent.putExtra("photoURI", message.getImageList().get(i).toString());
-                                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.rightCollageView, holder1.rightCollageView.getTransitionName());
+                                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.leftCollageView, holder1.leftCollageView.getTransitionName());
                                         context.startActivity(intent, optionsCompat.toBundle());
                                     }
-
                                 });
-                            }
-                            else{
+                            } else {
 
-                                if(holder instanceof LeftTypingViewHolder){
+                                if (holder instanceof RightImagesViewHolder) {
+                                    final RightImagesViewHolder holder1 = (RightImagesViewHolder) holder;
 
-                                }
-                                else{
-                                    if(holder instanceof LeftVideoViewHolder){
-                                        final LeftVideoViewHolder holder1 =(LeftVideoViewHolder) holder;
-                                        final VideoPlayer videoPlayer = new VideoPlayer(context);
-                                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                                        videoPlayer.setLayoutParams(params);
-                                        videoPlayer.setScaleType(VideoPlayer.ScaleType.CENTER_CROP);
-                                        //((LeftVideoViewHolder) holder).videoLL.getLayoutParams().height = getScreenWidth(context) * 9 /16;
-                                        //holder1.videoLL.removeAllViews();
-                                        holder1.videoLL.addView(videoPlayer);
-                                        videoPlayer.loadVideo(message.getVideoUri().toString(),message);
-                                        if(message.getUserIcon()!=null) {
-                                            Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
+                                    if (message.getUserIcon() != null) {
+                                        Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                                    }
+                                    holder1.senderNameTV.setText(message.getUserName());
+                                    List<String> imageList = new ArrayList<>();
+                                    for (int i = 0; i < message.getImageList().size(); i++) {
+                                        imageList.add(message.getImageList().get(i).toString());
+                                    }
+                                    holder1.rightTimeTV.setText(message.getTime());
+                                    holder1.rightCollageView
+                                            .photoMargin(8)
+                                            .photoPadding(0)
+                                            .backgroundColor(rightBubbleLayoutColor)
+                                            .useFirstAsHeader(false) // makes first photo fit device widtdh and use full line
+                                            .defaultPhotosForLine(2) // sets default photos number for line of photos (can be changed by program at runtime)
+                                            .useCards(true)// adds cardview backgrounds to all photos
+                                            .loadPhotos(imageList);
+
+                                    holder1.rightCollageView.setTransitionName("photoTransition");
+                                    holder1.rightCollageView.setOnPhotoClickListener(new CollageView.OnPhotoClickListener() {
+                                        @Override
+                                        public void onPhotoClick(int i) {
+
+                                            Intent intent = new Intent(context, ImageFFActivity.class);
+                                            intent.putExtra("photoURI", message.getImageList().get(i).toString());
+                                            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, holder1.rightCollageView, holder1.rightCollageView.getTransitionName());
+                                            context.startActivity(intent, optionsCompat.toBundle());
                                         }
 
-                                        videoPlayer.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view) {
-                                                if(mediaPlayer!=null && mediaPlayer.isPlaying()){
-                                                    mediaPlayer.pause();
-                                                }
-                                                videoPlayer.setTransitionName("videoFF");
-                                                Intent intent = new Intent(context, VideoFFActivity.class);
-                                                intent.putExtra("videoURI", message.getVideoUri().toString());
-                                                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, videoPlayer, videoPlayer.getTransitionName());
-                                                context.startActivity(intent, optionsCompat.toBundle());
-                                            }
-                                        });
-                                        holder1.senderNameTV.setText(message.getUserName());
+                                    });
+                                } else {
 
-                                        holder1.leftTimeTV.setText(message.getTime());
+                                    if (holder instanceof LeftTypingViewHolder) {
 
-                                    }
-                                    else{
-                                        if (holder instanceof  RightVideoViewHolder) {
-                                            final RightVideoViewHolder holder1 = (RightVideoViewHolder) holder;
+                                    } else {
+                                        if (holder instanceof LeftVideoViewHolder) {
+                                            final LeftVideoViewHolder holder1 = (LeftVideoViewHolder) holder;
                                             final VideoPlayer videoPlayer = new VideoPlayer(context);
                                             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                                            videoPlayer.setScaleType(VideoPlayer.ScaleType.CENTER_CROP);
                                             videoPlayer.setLayoutParams(params);
-                                            //((RightVideoViewHolder) holder).videoLL.getLayoutParams().height = getScreenWidth(context) * 9 /16;
+                                            videoPlayer.setScaleType(VideoPlayer.ScaleType.CENTER_CROP);
+                                            //((LeftVideoViewHolder) holder).videoLL.getLayoutParams().height = getScreenWidth(context) * 9 /16;
                                             //holder1.videoLL.removeAllViews();
                                             holder1.videoLL.addView(videoPlayer);
                                             videoPlayer.loadVideo(message.getVideoUri().toString(), message);
-                                            //adjustAspectRatio(videoPlayer,videoPlayer.getMp().getVideoWidth(),videoPlayer.getMp().getVideoHeight());
-
                                             if (message.getUserIcon() != null) {
-                                                Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                                                Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
                                             }
 
                                             videoPlayer.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
-                                                    if(mediaPlayer!=null && mediaPlayer.isPlaying()){
+                                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                                                         mediaPlayer.pause();
                                                     }
                                                     videoPlayer.setTransitionName("videoFF");
@@ -1504,36 +1502,69 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                             });
                                             holder1.senderNameTV.setText(message.getUserName());
 
-                                            holder1.rightTimeTV.setText(message.getTime());
-                                        }
-                                        else{
-                                            if(holder instanceof LeftAudioViewHolder){
-                                                final LeftAudioViewHolder holder1 =(LeftAudioViewHolder) holder;
+                                            holder1.leftTimeTV.setText(message.getTime());
 
-                                                holder1.leftTimeTV.setText(message.getTime());
+                                        } else {
+                                            if (holder instanceof RightVideoViewHolder) {
+                                                final RightVideoViewHolder holder1 = (RightVideoViewHolder) holder;
+                                                final VideoPlayer videoPlayer = new VideoPlayer(context);
+                                                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                                                videoPlayer.setScaleType(VideoPlayer.ScaleType.CENTER_CROP);
+                                                videoPlayer.setLayoutParams(params);
+                                                //((RightVideoViewHolder) holder).videoLL.getLayoutParams().height = getScreenWidth(context) * 9 /16;
+                                                //holder1.videoLL.removeAllViews();
+                                                holder1.videoLL.addView(videoPlayer);
+                                                videoPlayer.loadVideo(message.getVideoUri().toString(), message);
+                                                //adjustAspectRatio(videoPlayer,videoPlayer.getMp().getVideoWidth(),videoPlayer.getMp().getVideoHeight());
 
-                                                if(message.getUserIcon()!=null) {
-                                                    Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
-                                                }
-                                                holder1.senderNameTV.setText(message.getUserName());
-
-                                                holder1.setMessage(message);
-
-                                            }
-                                            else{
-                                                final RightAudioViewHolder holder1 =(RightAudioViewHolder) holder;
-
-                                                holder1.rightTimeTV.setText(message.getTime());
-                                                if(message.getUserIcon()!=null) {
+                                                if (message.getUserIcon() != null) {
                                                     Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
                                                 }
 
-
+                                                videoPlayer.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                                                            mediaPlayer.pause();
+                                                        }
+                                                        videoPlayer.setTransitionName("videoFF");
+                                                        Intent intent = new Intent(context, VideoFFActivity.class);
+                                                        intent.putExtra("videoURI", message.getVideoUri().toString());
+                                                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, videoPlayer, videoPlayer.getTransitionName());
+                                                        context.startActivity(intent, optionsCompat.toBundle());
+                                                    }
+                                                });
                                                 holder1.senderNameTV.setText(message.getUserName());
 
-                                                holder1.setMessage(message);
+                                                holder1.rightTimeTV.setText(message.getTime());
+                                            } else {
+                                                if (holder instanceof LeftAudioViewHolder) {
+                                                    final LeftAudioViewHolder holder1 = (LeftAudioViewHolder) holder;
+
+                                                    holder1.leftTimeTV.setText(message.getTime());
+
+                                                    if (message.getUserIcon() != null) {
+                                                        Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
+                                                    }
+                                                    holder1.senderNameTV.setText(message.getUserName());
+
+                                                    holder1.setMessage(message);
+
+                                                } else {
+                                                    final RightAudioViewHolder holder1 = (RightAudioViewHolder) holder;
+
+                                                    holder1.rightTimeTV.setText(message.getTime());
+                                                    if (message.getUserIcon() != null) {
+                                                        Picasso.with(context).load(message.getUserIcon()).into(holder1.rightBubbleIconIV);
+                                                    }
 
 
+                                                    holder1.senderNameTV.setText(message.getUserName());
+
+                                                    holder1.setMessage(message);
+
+
+                                                }
                                             }
                                         }
                                     }

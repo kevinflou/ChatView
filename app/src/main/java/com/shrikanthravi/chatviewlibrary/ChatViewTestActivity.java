@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.github.zagum.expandicon.ExpandIconView;
+import com.shrikanthravi.chatview.data.CarouselCell;
 import com.shrikanthravi.chatview.widget.ChatView;
 import com.shrikanthravi.chatview.data.Message;
 import com.zhihu.matisse.Matisse;
@@ -85,9 +86,18 @@ public class ChatViewTestActivity extends AppCompatActivity {
                     switchbool=false;
                 }
                 else{
+                    List<CarouselCell> list_cC = new ArrayList<>();
+                    for(int i = 0;i<5;i++){
+                        CarouselCell cC = new CarouselCell();
+                        cC.setCarousel_image("Test");
+                        cC.setTitle_carousel("Title "+i);
+                        cC.setSubtitle_carousel("SubTitle "+i);
+                        list_cC.add(cC);
+                    }
                     Message message1 = new Message();
+                    message1.setList_carousel(list_cC);
                     message1.setBody(body);
-                    message1.setMessageType(Message.MessageType.LeftSimpleMessage);
+                    message1.setMessageType(Message.MessageType.LeftCarousel);
                     message1.setTime(getTime());
                     message1.setUserName("Hodor");
                     message1.setUserIcon(Uri.parse("android.resource://com.shrikanthravi.chatviewlibrary/drawable/hodor"));
