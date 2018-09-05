@@ -1272,8 +1272,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
             layoutManager.setStackFromEnd(true);
             if(rV.getItemDecorationCount() == 0){
-                VerticalSpaceDecorationItem verticalSpaceDecorationItem = new VerticalSpaceDecorationItem(24);
-                rV.addItemDecoration(verticalSpaceDecorationItem);
+                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(24);
+                rV.addItemDecoration(horizontalSpaceDecorationItem);
             }
             rV.setLayoutManager(layoutManager);
             rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
