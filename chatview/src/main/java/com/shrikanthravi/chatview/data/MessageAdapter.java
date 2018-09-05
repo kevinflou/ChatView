@@ -293,7 +293,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
             setAdapterRecyclerView(carouselRV);
-            leftTV = view.findViewById(R.id.leftTV);
             leftTimeTV = view.findViewById(R.id.leftTimeTV);
             leftEL = view.findViewById(R.id.leftEL);
             senderNameTV = view.findViewById(R.id.senderNameTV);
@@ -303,7 +302,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             setSenderNameTextColor(senderNameTextColor);
             showSenderName(showSenderName);
             showLeftBubbleIcon(showLeftBubbleIcon);
-            setTextSize(textSize);
+            //setTextSize(textSize);
         }
 
         public void setAdapterRecyclerView(RecyclerView rV){
