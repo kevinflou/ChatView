@@ -123,7 +123,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         int type=0;
-        System.out.println(messageList.get(position).getMessageType());
+        //System.out.println(messageList.get(position).getMessageType());
         switch (messageList.get(position).getMessageType()) {
             case LeftSimpleMessage: {
                 type = 1;
