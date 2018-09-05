@@ -166,7 +166,7 @@ public class ChatViewTestActivity extends AppCompatActivity {
 
     public String getTime(){
         java.util.Calendar calendar = java.util.Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("dd MMM yyyy HH:mm");
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
         String time = mdformat.format(calendar.getTime());
         return time;
     }

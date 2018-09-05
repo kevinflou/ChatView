@@ -309,6 +309,45 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public void setAdapterRecyclerView(RecyclerView rV){
 
         }
+
+        public void setBackgroundColor(int color){
+            Drawable backgroundDrawable = DrawableCompat.wrap(leftTV.getBackground()).mutate();
+            DrawableCompat.setTint(backgroundDrawable,color);
+        }
+
+        public void setTextColor(int color){
+            leftTV.setTextColor(color);
+        }
+
+        public void setTimeTextColor(int color){
+            leftTimeTV.setTextColor(color);
+        }
+
+        public void setSenderNameTextColor(int color){
+            senderNameTV.setTextColor(color);
+        }
+
+        public void showSenderName(boolean b){
+            if(b){
+                senderNameTV.setVisibility(View.VISIBLE);
+            }
+            else{
+                senderNameTV.setVisibility(View.GONE);
+            }
+        }
+
+        public void showLeftBubbleIcon(boolean b){
+            if(b){
+                leftBubbleIconCV.setVisibility(View.VISIBLE);
+            }
+            else{
+                leftBubbleIconCV.setVisibility(View.GONE);
+            }
+        }
+
+        public void setTextSize(float size){
+            leftTV.setTextSize(size);
+        }
     }
 
     protected class LeftTextViewHolder extends RecyclerView.ViewHolder {
@@ -1639,7 +1678,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public String getTime(){
         java.util.Calendar calendar = java.util.Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("dd MMM yyyy HH:mm");
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
         String time = mdformat.format(calendar.getTime());
         return time;
     }
