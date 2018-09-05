@@ -45,6 +45,7 @@ public class Message {
 
     public enum MessageType{
         LeftSimpleMessage,
+        RightSimpleMessage,
         RightSimpleImage,
         LeftSingleImage,
         RightSingleImage,
