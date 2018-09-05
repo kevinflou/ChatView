@@ -354,9 +354,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         }
 
-        public void setTextSize(float size){
+        /*public void setTextSize(float size){
             leftTV.setTextSize(size);
-        }
+        }*/
     }
 
     protected class LeftWeatherViewHolder extends RecyclerView.ViewHolder {
@@ -430,9 +430,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         }
 
-        public void setTextSize(float size){
-            leftTV.setTextSize(size);
-        }
+        //public void setTextSize(float size){
+            //leftTV.setTextSize(size);
+        //}
     }
 
     protected class LeftTextViewHolder extends RecyclerView.ViewHolder {
