@@ -1423,7 +1423,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             if (holder instanceof LeftWeatherViewHolder){
                 final LeftWeatherViewHolder holder1 = (LeftWeatherViewHolder) holder;
-                holder1.leftTV.setText(message.getBody());
+                //holder1.leftTV.setText(message.getBody());
                 holder1.leftTimeTV.setText(message.getTime());
 
                 if (message.getUserIcon() != null) {
