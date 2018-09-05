@@ -1279,6 +1279,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
             CarouselAdapter cA = new CarouselAdapter(holder1.list_cC,context,rV);
             rV.setAdapter(cA);
+            rV.scrollToPosition(0);
         } else {
             if (holder instanceof LeftTextViewHolder) {
                 final LeftTextViewHolder holder1 = (LeftTextViewHolder) holder;

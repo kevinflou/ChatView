@@ -43,6 +43,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             final byte[] decodedBytes = Base64.decode(CarouselCellList.get(position).getCarousel_image(), Base64.DEFAULT);
             Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
             holder.imageCell.setImageBitmap(decodedBitmap);
+            decodedBitmap = null;
         }
         holder.titleCell.setText(CarouselCellList.get(position).getTitle_carousel());
         holder.subtitleCell.setText(CarouselCellList.get(position).getSubtitle_carousel());
