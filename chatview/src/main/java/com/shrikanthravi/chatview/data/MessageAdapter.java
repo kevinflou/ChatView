@@ -284,11 +284,26 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     protected class LeftCarouselViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView carouselRV;
         public List<CarouselCell> list_cC;
+        public TextView leftTV,leftTimeTV,senderNameTV;
+        public ExpandableLayout leftEL;
+        public ImageView lefttMessageStatusIV,leftBubbleIconIV;
+        public CardView leftBubbleIconCV;
 
         public LeftCarouselViewHolder(View view) {
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
             setAdapterRecyclerView(carouselRV);
+            leftTV = view.findViewById(R.id.leftTV);
+            leftTimeTV = view.findViewById(R.id.leftTimeTV);
+            leftEL = view.findViewById(R.id.leftEL);
+            senderNameTV = view.findViewById(R.id.senderNameTV);
+            leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
+            leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
+            setTimeTextColor(timeTextColor);
+            setSenderNameTextColor(senderNameTextColor);
+            showSenderName(showSenderName);
+            showLeftBubbleIcon(showLeftBubbleIcon);
+            setTextSize(textSize);
         }
 
         public void setAdapterRecyclerView(RecyclerView rV){
@@ -1280,6 +1295,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             CarouselAdapter cA = new CarouselAdapter(holder1.list_cC,context,rV);
             rV.setAdapter(cA);
             rV.scrollToPosition(0);
+
+            holder1.leftTimeTV.setText(message.getTime());
+
+            if (message.getUserIcon() != null) {
+                Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
+            }
+            holder1.senderNameTV.setText(message.getUserName());
         } else {
             if (holder instanceof LeftTextViewHolder) {
                 final LeftTextViewHolder holder1 = (LeftTextViewHolder) holder;
