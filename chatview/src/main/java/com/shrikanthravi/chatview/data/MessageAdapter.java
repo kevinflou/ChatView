@@ -383,12 +383,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
 
 
-            currentTemperatureTV.setText(getWeather().getCurrent_temp()+" à "+getWeather().getCity());
-            minTempTV.setText("Temp min : "+getWeather().getTmin());
-            maxTempTV.setText("Temp max : "+getWeather().getTmax());
-            currentConditionTV.setText("Actuellement, "+getWeather().getCurrent_condition());
-            Picasso.with(context).load(getWeather().getCurrent_icon()).into(currentIconIV);
-
             setTimeTextColor(timeTextColor);
             setSenderNameTextColor(senderNameTextColor);
             showSenderName(showSenderName);
@@ -1439,6 +1433,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder1.weather = message.getWeather();
                 holder1.list_hour_weather = message.getWeather().getList_weather_by_hour();
 
+                holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp()+" à "+holder1.weather.getCity());
+                holder1.minTempTV.setText("Temp min : "+holder1.weather.getTmin());
+                holder1.maxTempTV.setText("Temp max : "+holder1.weather.getTmax());
+                holder1.currentConditionTV.setText("Actuellement, "+holder1.weather.getCurrent_condition());
+                Picasso.with(context).load(holder1.weather.getCurrent_icon()).into(holder1.currentIconIV);
+
                 RecyclerView rV = holder1.HourperhourweatherRV;
                 LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
                 layoutManager.setStackFromEnd(true);
@@ -1451,6 +1451,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 WeatherAdapter wA = new WeatherAdapter(holder1.list_hour_weather,context,rV);
                 rV.setAdapter(wA);
                 rV.scrollToPosition(0);
+
+
             }else {
                 if (holder instanceof LeftTextViewHolder) {
                     final LeftTextViewHolder holder1 = (LeftTextViewHolder) holder;
