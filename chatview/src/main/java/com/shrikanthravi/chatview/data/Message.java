@@ -42,6 +42,7 @@ public class Message {
     protected Uri audioUri;
     protected int indexPosition;
     protected List<CarouselCell> list_carousel;
+    protected Weather weather;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -55,7 +56,8 @@ public class Message {
         RightVideo,
         LeftAudio,
         RightAudio,
-        LeftCarousel
+        LeftCarousel,
+        LeftMeteoMessage
     }
 
     public Message(){
@@ -164,6 +166,14 @@ public class Message {
 
     public void setList_carousel(List<CarouselCell> list_carousel) {
         this.list_carousel = list_carousel;
+    }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
     }
 }
 
