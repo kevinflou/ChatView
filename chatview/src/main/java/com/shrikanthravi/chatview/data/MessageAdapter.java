@@ -1431,12 +1431,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 holder1.senderNameTV.setText(message.getUserName());
                 holder1.weather = message.getWeather();
-                holder1.list_hour_weather = message.getWeather().getList_weather_by_hour();
-
                 if(holder1.weather == null){
                     System.out.println("WEATHER IS NULL !!");
                     return;
                 }
+                holder1.list_hour_weather = message.getWeather().getList_weather_by_hour();
+
+
 
                 holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp()+" à "+holder1.weather.getCity());
                 holder1.minTempTV.setText("Temp min : "+holder1.weather.getTmin());
