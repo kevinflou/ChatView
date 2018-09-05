@@ -1269,8 +1269,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             System.out.println(message.getList_carousel().size());
             holder1.list_cC = message.getList_carousel();
             RecyclerView rV = holder1.carouselRV;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,true);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
             layoutManager.setStackFromEnd(true);
+            if(rV.getItemDecorationCount() == 0){
+                VerticalSpaceDecorationItem verticalSpaceDecorationItem = new VerticalSpaceDecorationItem(24);
+                rV.addItemDecoration(verticalSpaceDecorationItem);
+            }
             rV.setLayoutManager(layoutManager);
             rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
             CarouselAdapter cA = new CarouselAdapter(holder1.list_cC,context,rV);
