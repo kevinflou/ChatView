@@ -5,153 +5,85 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.silencedut.expandablelayout.ExpandableLayout
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/leftIVCV"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        app:expWithParentScroll="true"
-        android:id="@+id/leftEL"
-        app:expDuration = "300"
-        app:expExpandScrollTogether = "false"
-        android:layout_marginRight="100dp"
-        android:layout_alignParentLeft="true">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_margin="4dp"
+        app:cardCornerRadius="15dp"
+        app:contentPadding="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <TextView
+                android:id="@+id/currentTemperatureTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_margin="2dp"
-                android:id="@+id/senderNameTV"
-                android:textSize="12sp"
-                android:textColor="@android:color/tab_indicator_text"
-                android:text=""/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="99° à Valenciennes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/minTempTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="12.5dp"
-                    android:layout_gravity="top|center"
-                    android:layout_margin="5dp"
-                    android:id="@+id/leftBubbleIconCV"
-                    app:cardBackgroundColor="@color/colorAccent2"
-                    app:cardElevation="2.5dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:id="@+id/leftBubbleIconIV"
-                        android:layout_height="25dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profile_icon"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Température Min : 00°"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentTemperatureTV" />
 
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="4dp"
-                    app:cardCornerRadius="15dp"
-                    android:layout_margin="4dp"
-                    android:id="@+id/leftIVCV">
+            <TextView
+                android:id="@+id/maxTempTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Température Max : 99°"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minTempTv" />
 
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/currentConditionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Actuellement, Fortement nuageux"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/maxTempTV" />
 
-                        <TextView
-                            android:id="@+id/currentTemperatureTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:text="99° à Valenciennes"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/currentIconIV"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/currentTemperatureTV"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/boy" />
 
-                        <TextView
-                            android:id="@+id/minTempTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:text="Température Min : 00°"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/currentTemperatureTV" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/hourperhourweatherRV"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentConditionTV" />
 
-                        <TextView
-                            android:id="@+id/maxTempTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:text="Température Max : 99°"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/minTempTv" />
+        </android.support.constraint.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/currentConditionTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:text="Actuellement, Fortement nuageux"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/maxTempTV" />
-
-                        <ImageView
-                            android:id="@+id/currentIconIV"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/currentTemperatureTV"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/boy" />
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/hourperhourweatherRV"
-                            android:layout_width="match_parent"
-                            android:layout_height="95dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/currentConditionTV" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text=""
-            android:id="@+id/leftTimeTV"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="2dp"
-            android:layout_gravity="left"
-            android:gravity="left|center"/>
-
-    </com.silencedut.expandablelayout.ExpandableLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

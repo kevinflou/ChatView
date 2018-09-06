@@ -361,10 +361,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     protected class LeftWeatherViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView HourperhourweatherRV;
-        public TextView leftTV,leftTimeTV,senderNameTV,currentTemperatureTV,minTempTV,maxTempTV,currentConditionTV;
-        public ExpandableLayout leftEL;
-        public ImageView leftBubbleIconIV,currentIconIV;
-        public CardView leftBubbleIconCV;
+        public TextView currentTemperatureTV,minTempTV,maxTempTV,currentConditionTV;
+        //public ExpandableLayout leftEL;
+        public ImageView currentIconIV;
+        //public CardView leftBubbleIconCV;
         public Weather weather;
         public List<HourWeather> list_hour_weather;
 
@@ -376,21 +376,21 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             maxTempTV = view.findViewById(R.id.maxTempTV);
             currentConditionTV = view.findViewById(R.id.currentConditionTV);
             currentIconIV = view.findViewById(R.id.currentIconIV);
-            leftTimeTV = view.findViewById(R.id.leftTimeTV);
-            leftEL = view.findViewById(R.id.leftEL);
-            senderNameTV = view.findViewById(R.id.senderNameTV);
-            leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
-            leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
+            //leftTimeTV = view.findViewById(R.id.leftTimeTV);
+            //leftEL = view.findViewById(R.id.leftEL);
+            //senderNameTV = view.findViewById(R.id.senderNameTV);
+            //leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
+            //leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
 
 
-            setTimeTextColor(timeTextColor);
-            setSenderNameTextColor(senderNameTextColor);
-            showSenderName(showSenderName);
-            showLeftBubbleIcon(showLeftBubbleIcon);
+            //setTimeTextColor(timeTextColor);
+            //setSenderNameTextColor(senderNameTextColor);
+            //showSenderName(showSenderName);
+            //showLeftBubbleIcon(showLeftBubbleIcon);
             //setTextSize(textSize);
         }
 
-        public Weather getWeather() {
+        /*public Weather getWeather() {
             return weather;
         }
 
@@ -422,7 +422,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             else{
                 leftBubbleIconCV.setVisibility(View.GONE);
             }
-        }
+        }*/
 
         //public void setTextSize(float size){
             //leftTV.setTextSize(size);
@@ -1424,12 +1424,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (holder instanceof LeftWeatherViewHolder){
                 final LeftWeatherViewHolder holder1 = (LeftWeatherViewHolder) holder;
                 //holder1.leftTV.setText(message.getBody());
-                holder1.leftTimeTV.setText(message.getTime());
+                /*holder1.leftTimeTV.setText(message.getTime());
 
                 if (message.getUserIcon() != null) {
                     Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
                 }
-                holder1.senderNameTV.setText(message.getUserName());
+                holder1.senderNameTV.setText(message.getUserName());*/
                 holder1.weather = message.getWeather();
                 if(holder1.weather == null){
                     System.out.println("WEATHER IS NULL !!");
