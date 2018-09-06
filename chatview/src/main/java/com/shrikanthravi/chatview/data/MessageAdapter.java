@@ -1414,12 +1414,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rV.setAdapter(cA);
             rV.scrollToPosition(0);
 
-            holder1.leftTimeTV.setText(message.getTime());
+            /*holder1.leftTimeTV.setText(message.getTime());
 
             if (message.getUserIcon() != null) {
                 Picasso.with(context).load(message.getUserIcon()).into(holder1.leftBubbleIconIV);
             }
-            holder1.senderNameTV.setText(message.getUserName());
+            holder1.senderNameTV.setText(message.getUserName());*/
         } else {
             if (holder instanceof LeftWeatherViewHolder){
                 final LeftWeatherViewHolder holder1 = (LeftWeatherViewHolder) holder;
