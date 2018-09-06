@@ -294,24 +294,24 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     protected class LeftCarouselViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView carouselRV;
         public List<CarouselCell> list_cC;
-        public TextView leftTV,leftTimeTV,senderNameTV;
-        public ExpandableLayout leftEL;
-        public ImageView lefttMessageStatusIV,leftBubbleIconIV;
+        //public TextView leftTV,leftTimeTV,senderNameTV;
+        //public ExpandableLayout leftEL;
+        //public ImageView lefttMessageStatusIV,leftBubbleIconIV;
         public CardView leftBubbleIconCV;
 
         public LeftCarouselViewHolder(View view) {
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
             setAdapterRecyclerView(carouselRV);
-            leftTimeTV = view.findViewById(R.id.leftTimeTV);
-            leftEL = view.findViewById(R.id.leftEL);
-            senderNameTV = view.findViewById(R.id.senderNameTV);
-            leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
+            //leftTimeTV = view.findViewById(R.id.leftTimeTV);
+            //leftEL = view.findViewById(R.id.leftEL);
+            //senderNameTV = view.findViewById(R.id.senderNameTV);
+            //leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
             leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
-            setTimeTextColor(timeTextColor);
-            setSenderNameTextColor(senderNameTextColor);
-            showSenderName(showSenderName);
-            showLeftBubbleIcon(showLeftBubbleIcon);
+            //setTimeTextColor(timeTextColor);
+            //setSenderNameTextColor(senderNameTextColor);
+            //showSenderName(showSenderName);
+            //showLeftBubbleIcon(showLeftBubbleIcon);
             //setTextSize(textSize);
         }
 
