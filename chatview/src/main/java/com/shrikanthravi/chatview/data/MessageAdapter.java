@@ -1405,7 +1405,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
             layoutManager.setStackFromEnd(true);
             if(rV.getItemDecorationCount() == 0){
-                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(24);
+                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
                 rV.addItemDecoration(horizontalSpaceDecorationItem);
             }
             rV.setLayoutManager(layoutManager);
