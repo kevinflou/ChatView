@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -364,6 +365,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView currentTemperatureTV,minTempTV,maxTempTV,currentConditionTV;
         //public ExpandableLayout leftEL;
         public ImageView currentIconIV;
+        public Button seeWeatherPageButton;
         //public CardView leftBubbleIconCV;
         public Weather weather;
         public List<HourWeather> list_hour_weather;
@@ -376,6 +378,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             maxTempTV = view.findViewById(R.id.maxTempTV);
             currentConditionTV = view.findViewById(R.id.currentConditionTV);
             currentIconIV = view.findViewById(R.id.currentIconIV);
+            seeWeatherPageButton = view.findViewById(R.id.seeWeatherPageButton);
             //leftTimeTV = view.findViewById(R.id.leftTimeTV);
             //leftEL = view.findViewById(R.id.leftEL);
             //senderNameTV = view.findViewById(R.id.senderNameTV);
@@ -1437,7 +1440,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     return;
                 }
                 holder1.list_hour_weather = message.getWeather().getList_weather_by_hour();
-                holder1.itemView.setOnClickListener(message.getWeather().getOnClickListener());
+                holder1.seeWeatherPageButton.setOnClickListener(message.getWeather().getOnClickListener());
 
 
                 holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp()+" à "+holder1.weather.getCity());
