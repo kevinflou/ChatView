@@ -8,7 +8,6 @@
 
     <Button
         android:id="@+id/seeWeatherPageButton"
-        style="@android:style/Widget.Button.Transparent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Consuler la météo"
