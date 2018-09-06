@@ -297,17 +297,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //public TextView leftTV,leftTimeTV,senderNameTV;
         //public ExpandableLayout leftEL;
         //public ImageView lefttMessageStatusIV,leftBubbleIconIV;
-        public CardView leftBubbleIconCV;
+        //public CardView leftBubbleIconCV;
 
         public LeftCarouselViewHolder(View view) {
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
-            setAdapterRecyclerView(carouselRV);
+            //setAdapterRecyclerView(carouselRV);
             //leftTimeTV = view.findViewById(R.id.leftTimeTV);
             //leftEL = view.findViewById(R.id.leftEL);
             //senderNameTV = view.findViewById(R.id.senderNameTV);
             //leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
-            leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
+            //leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
             //setTimeTextColor(timeTextColor);
             //setSenderNameTextColor(senderNameTextColor);
             //showSenderName(showSenderName);
@@ -315,11 +315,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             //setTextSize(textSize);
         }
 
-        public void setAdapterRecyclerView(RecyclerView rV){
+        //public void setAdapterRecyclerView(RecyclerView rV){
 
-        }
+        //}
 
-        public void setBackgroundColor(int color){
+        /*public void setBackgroundColor(int color){
             Drawable backgroundDrawable = DrawableCompat.wrap(leftTV.getBackground()).mutate();
             DrawableCompat.setTint(backgroundDrawable,color);
         }
@@ -352,7 +352,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             else{
                 leftBubbleIconCV.setVisibility(View.GONE);
             }
-        }
+        }*/
 
         /*public void setTextSize(float size){
             leftTV.setTextSize(size);
