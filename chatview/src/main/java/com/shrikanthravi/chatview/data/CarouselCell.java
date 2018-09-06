@@ -4,6 +4,7 @@ public class CarouselCell {
     private String carousel_image;
     private String title_carousel;
     private String subtitle_carousel;
+    private String completion_edit_text;
 
     public String getCarousel_image() {
         return carousel_image;
@@ -27,5 +28,13 @@ public class CarouselCell {
 
     public void setSubtitle_carousel(String subtitle_carousel) {
         this.subtitle_carousel = subtitle_carousel;
+    }
+
+    public String getCompletion_edit_text() {
+        return completion_edit_text;
+    }
+
+    public void setCompletion_edit_text(String completion_edit_text) {
+        this.completion_edit_text = completion_edit_text;
     }
 }
