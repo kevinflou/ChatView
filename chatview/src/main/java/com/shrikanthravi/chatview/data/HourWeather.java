@@ -6,7 +6,7 @@ public class HourWeather {
     private String hour;
 
     public String getTMP2m() {
-        return TMP2m;
+        return TMP2m + "°";
     }
 
     public void setTMP2m(String TMP2m) {

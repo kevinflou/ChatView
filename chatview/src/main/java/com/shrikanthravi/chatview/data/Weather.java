@@ -20,7 +20,7 @@ public class Weather {
     }
 
     public String getCurrent_temp() {
-        return current_temp + " °";
+        return current_temp + "°";
     }
 
     public void setCurrent_temp(String current_temp) {
@@ -44,7 +44,7 @@ public class Weather {
     }
 
     public String getTmax() {
-        return tmax + " °";
+        return tmax + "°";
     }
 
     public void setTmax(String tmax) {
@@ -52,7 +52,7 @@ public class Weather {
     }
 
     public String getTmin() {
-        return tmin +" °";
+        return tmin +"°";
     }
 
     public void setTmin(String tmin) {
