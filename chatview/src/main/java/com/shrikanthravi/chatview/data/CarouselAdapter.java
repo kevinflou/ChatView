@@ -48,7 +48,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         holder.titleCell.setText(CarouselCellList.get(position).getTitle_carousel());
         holder.subtitleCell.setText(CarouselCellList.get(position).getSubtitle_carousel());
         holder.itemView.setLayoutParams(new ViewGroup.LayoutParams(holder.itemView.getLayoutParams().WRAP_CONTENT,holder.itemView.getLayoutParams().MATCH_PARENT));
-
+        holder.itemView.setOnClickListener(CarouselCellList.get(position).getOnClickListener());
     }
 
     @Override

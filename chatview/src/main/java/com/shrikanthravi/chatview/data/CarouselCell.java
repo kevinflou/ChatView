@@ -1,10 +1,13 @@
 package com.shrikanthravi.chatview.data;
 
+import android.view.View;
+
 public class CarouselCell {
     private String carousel_image;
     private String title_carousel;
     private String subtitle_carousel;
     private String completion_edit_text;
+    private View.OnClickListener OnClickListener;
 
     public String getCarousel_image() {
         return carousel_image;
@@ -36,5 +39,13 @@ public class CarouselCell {
 
     public void setCompletion_edit_text(String completion_edit_text) {
         this.completion_edit_text = completion_edit_text;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return OnClickListener;
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        OnClickListener = onClickListener;
     }
 }
