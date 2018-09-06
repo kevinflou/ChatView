@@ -1,5 +1,7 @@
 package com.shrikanthravi.chatview.data;
 
+import android.view.View;
+
 import java.util.List;
 
 public class Weather {
@@ -10,6 +12,7 @@ public class Weather {
     private String tmax;
     private String tmin;
     private List<HourWeather> list_weather_by_hour;
+    private View.OnClickListener onClickListener;
 
     public String getCity() {
         return City;
@@ -65,5 +68,13 @@ public class Weather {
 
     public void setList_weather_by_hour(List<HourWeather> list_weather_by_hour) {
         this.list_weather_by_hour = list_weather_by_hour;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 }

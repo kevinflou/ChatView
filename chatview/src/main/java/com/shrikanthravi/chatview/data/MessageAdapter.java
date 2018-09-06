@@ -1401,6 +1401,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
             System.out.println(message.getList_carousel().size());
             holder1.list_cC = message.getList_carousel();
+
             RecyclerView rV = holder1.carouselRV;
             LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
             layoutManager.setStackFromEnd(true);
@@ -1436,7 +1437,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     return;
                 }
                 holder1.list_hour_weather = message.getWeather().getList_weather_by_hour();
-
+                holder1.itemView.setOnClickListener(message.getWeather().getOnClickListener());
 
 
                 holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp()+" à "+holder1.weather.getCity());
