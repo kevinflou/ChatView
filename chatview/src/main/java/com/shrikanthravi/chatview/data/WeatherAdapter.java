@@ -40,6 +40,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         Picasso.with(context).load(HourWeatherList.get(position).getIcon()).into(holder.iconHourIV);
         holder.tempHourTV.setText(HourWeatherList.get(position).getTMP2m());
         holder.hourofhourTV.setText(HourWeatherList.get(position).getHour());
+        holder.itemView.setOnClickListener(HourWeatherList.get(position).getClickListener());
     }
 
     @Override
