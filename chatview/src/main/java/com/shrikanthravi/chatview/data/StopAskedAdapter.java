@@ -3,6 +3,7 @@ package com.shrikanthravi.chatview.data;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     public void onBindViewHolder(StopAskedAdapter.StopAskedViewHolder holder, int position) {
         holder.numeroLigneTV.setText(ligneDeservieList.get(position).getShort_name());
         holder.longNameTV.setText(ligneDeservieList.get(position).getLong_name());
+        holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ligneDeservieList.get(position).getColor_ligne()));
     }
 
     @Override
@@ -56,6 +58,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             numeroLigneTV = view.findViewById(R.id.numeroLigneTV);
             longNameTV = view.findViewById(R.id.longNameTV);
             typeLigneIV = view.findViewById(R.id.typeLigneIV);
+            bgLigneNumber = view.findViewById(R.id.bgLigneNumber);
         }
     }
 }

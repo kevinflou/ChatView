@@ -21,6 +21,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -1429,6 +1430,31 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             StopAskedAdapter saA = new StopAskedAdapter(holder1.stopAsked.getList_lignes(),context,rV);
             rV.setAdapter(saA);
             rV.scrollToPosition(0);
+
+            RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener() {
+                @Override
+                public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                    int action = e.getAction();
+                    switch (action) {
+                        case MotionEvent.ACTION_MOVE:
+                            rv.getParent().requestDisallowInterceptTouchEvent(true);
+                            break;
+                    }
+                    return false;
+                }
+
+                @Override
+                public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+                }
+
+                @Override
+                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                }
+            };
+
+            rV.addOnItemTouchListener(mScrollTouchListener);
 
             holder1.moreInfosStopButton.setOnClickListener(holder1.stopAsked.getOnClickListener());
 
