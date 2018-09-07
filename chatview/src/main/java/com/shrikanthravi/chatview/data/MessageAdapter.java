@@ -359,6 +359,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public RecyclerView lignesDeserviesRV;
         public ImageView typeLigneIV;
         public TextView StopNameTV,distanceToPointTV;
+        public Button moreInfosStopButton;
 
         public StopAsked stopAsked;
 
@@ -368,6 +369,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             typeLigneIV = view.findViewById(R.id.typeLigneIV);
             StopNameTV = view.findViewById(R.id.stopNameTV);
             distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
+            moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
         }
     }
 
@@ -1427,6 +1429,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             StopAskedAdapter saA = new StopAskedAdapter(holder1.stopAsked.getList_lignes(),context,rV);
             rV.setAdapter(saA);
             rV.scrollToPosition(0);
+
+            holder1.moreInfosStopButton.setOnClickListener(holder1.stopAsked.getOnClickListener());
         }else{
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
