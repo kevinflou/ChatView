@@ -4,19 +4,14 @@ package com.shrikanthravi.chatview.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
-import android.graphics.SurfaceTexture;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.CardView;
@@ -26,44 +21,35 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.lopei.collageview.CollageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
-import com.nostra13.universalimageloader.utils.L;
 import com.ohoussein.playpause.PlayPauseView;
 import com.shrikanthravi.chatview.R;
 import com.shrikanthravi.chatview.activities.ImageFFActivity;
 import com.shrikanthravi.chatview.activities.VideoFFActivity;
 import com.shrikanthravi.chatview.utils.FontChanger;
 
-import com.shrikanthravi.chatview.widget.ChatView;
 import com.silencedut.expandablelayout.ExpandableLayout;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 
 import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
@@ -166,6 +152,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 type = 10;
                 break;
             }
+            case LeftStopMessage: {
+                type = 997;
+                break;
+            }
             case LeftMeteoMessage:
             {
                 type = 998;
@@ -262,9 +252,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_weather_layout, parent, false);
                                                         viewHolder = new LeftWeatherViewHolder(view);
                                                     } else {
-                                                        View view = LayoutInflater.from(parent.getContext())
-                                                                .inflate(R.layout.right_audio_layout, parent, false);
-                                                        viewHolder = new RightAudioViewHolder(view);
+                                                        if (viewType == 997){
+                                                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_stop_layout,parent,false);
+                                                            viewHolder = new LeftStopViewHolder(view);
+                                                        }else {
+                                                            View view = LayoutInflater.from(parent.getContext())
+                                                                    .inflate(R.layout.right_audio_layout, parent, false);
+                                                            viewHolder = new RightAudioViewHolder(view);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -360,6 +355,22 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }*/
     }
 
+    protected class LeftStopViewHolder extends RecyclerView.ViewHolder {
+        public RecyclerView lignesDeserviesRV;
+        public ImageView typeLigneIV;
+        public TextView StopNameTV,distanceToPointTV;
+
+        public StopAsked stopAsked;
+
+        public LeftStopViewHolder(View view) {
+            super(view);
+            lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
+            typeLigneIV = view.findViewById(R.id.typeLigneIV);
+            StopNameTV = view.findViewById(R.id.stopNameTV);
+            distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
+        }
+    }
+
     protected class LeftWeatherViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView HourperhourweatherRV;
         public TextView currentTemperatureTV,minTempTV,maxTempTV,currentConditionTV;
@@ -373,9 +384,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public LeftWeatherViewHolder(View view) {
             super(view);
             HourperhourweatherRV = view.findViewById(R.id.hourperhourweatherRV);
-            currentTemperatureTV = view.findViewById(R.id.currentTemperatureTV);
-            minTempTV = view.findViewById(R.id.minTempTv);
-            maxTempTV = view.findViewById(R.id.maxTempTV);
+            currentTemperatureTV = view.findViewById(R.id.stopNameTV);
+            minTempTV = view.findViewById(R.id.distanceToPointTV);
+            maxTempTV = view.findViewById(R.id.peuImporteTV);
             currentConditionTV = view.findViewById(R.id.currentConditionTV);
             currentIconIV = view.findViewById(R.id.currentIconIV);
             seeWeatherPageButton = view.findViewById(R.id.seeWeatherPageButton);
@@ -1400,6 +1411,23 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         final Message message = messageList.get(position);
         messageList.get(position).setIndexPosition(position);
+        if(holder instanceof LeftStopViewHolder){
+            final LeftStopViewHolder holder1 = (LeftStopViewHolder) holder;
+            holder1.stopAsked = message.getStopAsked();
+
+            RecyclerView rV = holder1.lignesDeserviesRV;
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+            layoutManager.setStackFromEnd(true);
+            if(rV.getItemDecorationCount() == 0){
+                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                rV.addItemDecoration(horizontalSpaceDecorationItem);
+            }
+            rV.setLayoutManager(layoutManager);
+            rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+            StopAskedAdapter saA = new StopAskedAdapter(holder1.stopAsked.getList_lignes(),context,rV);
+            rV.setAdapter(saA);
+            rV.scrollToPosition(0);
+        }else{
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
             System.out.println(message.getList_carousel().size());
@@ -1425,7 +1453,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
             holder1.senderNameTV.setText(message.getUserName());*/
         } else {
-            if (holder instanceof LeftWeatherViewHolder){
+            if (holder instanceof LeftWeatherViewHolder) {
                 final LeftWeatherViewHolder holder1 = (LeftWeatherViewHolder) holder;
                 //holder1.leftTV.setText(message.getBody());
                 /*holder1.leftTimeTV.setText(message.getTime());
@@ -1435,7 +1463,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 holder1.senderNameTV.setText(message.getUserName());*/
                 holder1.weather = message.getWeather();
-                if(holder1.weather == null){
+                if (holder1.weather == null) {
                     System.out.println("WEATHER IS NULL !!");
                     return;
                 }
@@ -1443,27 +1471,27 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder1.seeWeatherPageButton.setOnClickListener(message.getWeather().getOnClickListener());
 
 
-                holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp()+" à "+holder1.weather.getCity());
-                holder1.minTempTV.setText("Temp min : "+holder1.weather.getTmin());
-                holder1.maxTempTV.setText("Temp max : "+holder1.weather.getTmax());
-                holder1.currentConditionTV.setText("Actuellement, "+holder1.weather.getCurrent_condition());
+                holder1.currentTemperatureTV.setText(holder1.weather.getCurrent_temp() + " à " + holder1.weather.getCity());
+                holder1.minTempTV.setText("Temp min : " + holder1.weather.getTmin());
+                holder1.maxTempTV.setText("Temp max : " + holder1.weather.getTmax());
+                holder1.currentConditionTV.setText("Actuellement, " + holder1.weather.getCurrent_condition());
                 Picasso.with(context).load(holder1.weather.getCurrent_icon()).into(holder1.currentIconIV);
 
                 RecyclerView rV = holder1.HourperhourweatherRV;
-                LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                 layoutManager.setStackFromEnd(true);
-                if(rV.getItemDecorationCount() == 0){
+                if (rV.getItemDecorationCount() == 0) {
                     HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(24);
                     rV.addItemDecoration(horizontalSpaceDecorationItem);
                 }
                 rV.setLayoutManager(layoutManager);
                 rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
-                WeatherAdapter wA = new WeatherAdapter(holder1.list_hour_weather,context,rV);
+                WeatherAdapter wA = new WeatherAdapter(holder1.list_hour_weather, context, rV);
                 rV.setAdapter(wA);
                 rV.scrollToPosition(0);
 
 
-            }else {
+            } else {
                 if (holder instanceof LeftTextViewHolder) {
                     final LeftTextViewHolder holder1 = (LeftTextViewHolder) holder;
                     holder1.leftTV.setText(message.getBody());
@@ -1764,6 +1792,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 }
             }
+        }
         }
     }
 

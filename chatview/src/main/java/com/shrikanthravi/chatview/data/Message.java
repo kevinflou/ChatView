@@ -43,6 +43,7 @@ public class Message {
     protected int indexPosition;
     protected List<CarouselCell> list_carousel;
     protected Weather weather;
+    protected StopAsked stopAsked;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -57,7 +58,8 @@ public class Message {
         LeftAudio,
         RightAudio,
         LeftCarousel,
-        LeftMeteoMessage
+        LeftMeteoMessage,
+        LeftStopMessage
     }
 
     public Message(){
@@ -175,6 +177,10 @@ public class Message {
     public void setWeather(Weather weather) {
         this.weather = weather;
     }
+
+    public StopAsked getStopAsked() { return stopAsked; }
+
+    public void setStopAsked(StopAsked stopAsked) { this.stopAsked = stopAsked; }
 }
 
 

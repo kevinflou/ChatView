@@ -7,10 +7,10 @@
     android:id="@+id/relativeLayout">
 
     <Button
-        android:id="@+id/seeWeatherPageButton"
+        android:id="@+id/moreInfosStopButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Consulter la météo"
+        android:text="Plus d'infos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leftIVCV" />
@@ -37,7 +37,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="99° à Valenciennes"
+                android:text="STOP NAME"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Température Min : 00°"
+                android:drawableLeft="@drawable/ic_directions_walk_white_24dp"
+                android:gravity="center_vertical"
+                android:text="450m"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stopNameTV" />
 
@@ -57,22 +59,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Température Max : 99°"
+                android:text="Lignes Déservies :"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/distanceToPointTV" />
 
-            <TextView
-                android:id="@+id/currentConditionTV"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Actuellement, Fortement nuageux"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/peuImporteTV" />
-
             <ImageView
-                android:id="@+id/currentIconIV"
+                android:id="@+id/handicapSupportedIV"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
@@ -85,13 +77,13 @@
                 app:srcCompat="@drawable/boy" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/hourperhourweatherRV"
+                android:id="@+id/lignesDeserviesRV"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/currentConditionTV" />
+                app:layout_constraintTop_toBottomOf="@+id/peuImporteTV" />
 
         </android.support.constraint.ConstraintLayout>
 
