@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
         public TextView numeroLigneTV,longNameTV;
         public ImageView typeLigneIV;
+        public FrameLayout bgLigneNumber;
 
         public StopAskedViewHolder(View view) {
             super(view);

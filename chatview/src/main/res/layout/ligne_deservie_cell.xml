@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/audio_icon" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/bgLigneNumber"
         android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,6 +41,6 @@
         android:layout_marginTop="8dp"
         android:text="UN TRES LONG NOM DE LIGNE MAIS PEU IMPORTE"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toEndOf="@+id/bgLigneNumber"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

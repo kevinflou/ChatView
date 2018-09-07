@@ -1418,7 +1418,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder1.stopAsked = message.getStopAsked();
 
             RecyclerView rV = holder1.lignesDeserviesRV;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
             layoutManager.setStackFromEnd(true);
             if(rV.getItemDecorationCount() == 0){
                 HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
@@ -1431,6 +1431,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rV.scrollToPosition(0);
 
             holder1.moreInfosStopButton.setOnClickListener(holder1.stopAsked.getOnClickListener());
+
+            holder1.StopNameTV.setText(holder1.stopAsked.getName_arret());
+            holder1.distanceToPointTV.setText(holder1.stopAsked.getDistance());
         }else{
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;

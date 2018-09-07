@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StopAsked {
     private String stop_id;
+    private String name_arret;
     private String distance;
     private String handicap;
     private List<LigneDeservie> list_lignes;
@@ -17,6 +18,14 @@ public class StopAsked {
 
     public void setStop_id(String stop_id) {
         this.stop_id = stop_id;
+    }
+
+    public String getName_arret() {
+        return name_arret;
+    }
+
+    public void setName_arret(String name_arret) {
+        this.name_arret = name_arret;
     }
 
     public String getDistance() {
