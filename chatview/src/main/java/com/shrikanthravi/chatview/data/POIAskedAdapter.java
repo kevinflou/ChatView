@@ -43,7 +43,11 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
         holder.markAndAvisTV.setText(poiAsked.getRating_poi() + " ("+poiAsked.getNb_avis_poi()+")");
         holder.addressTV.setText(poiAsked.getAdress_poi());
         holder.distanceTV.setText(poiAsked.getDistance_poi());
-        holder.ratingPOI.setRating(Float.valueOf(poiAsked.getRating_poi()));
+        try {
+            holder.ratingPOI.setRating(Float.valueOf(poiAsked.getRating_poi()));
+        }catch(Exception ex){
+            holder.ratingPOI.setRating(0.0f);
+        }
         holder.moreInfosButton.setOnClickListener(poiAsked.getOnClickListener());
     }
 
