@@ -59,7 +59,8 @@ public class Message {
         RightAudio,
         LeftCarousel,
         LeftMeteoMessage,
-        LeftStopMessage
+        LeftStopMessage,
+        LeftTypingMessage
     }
 
     public Message(){

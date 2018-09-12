@@ -153,6 +153,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 type = 10;
                 break;
             }
+            case LeftTypingMessage: {
+                type = 20;
+                break;
+            }
             case LeftStopMessage: {
                 type = 997;
                 break;
