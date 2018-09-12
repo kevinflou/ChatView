@@ -1421,7 +1421,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }else{
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
-            if(message.getMessageType() == Message.MessageType.LeftStopMessage) {
+            if(message.getMessageType() == Message.MessageType.LeftCarousel) {
                 System.out.println(message.getList_carousel().size());
                 holder1.list_cC = message.getList_carousel();
 
