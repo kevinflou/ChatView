@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.shrikanthravi.chatview.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -49,6 +50,12 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
             holder.ratingPOI.setRating(0.0f);
         }
         holder.moreInfosButton.setOnClickListener(poiAsked.getOnClickListener());
+        if(poiAsked.getLink_photo_poi() != null) {
+            Picasso.with(context).load(poiAsked.getLink_photo_poi()).into(holder.principalPicPOI);
+        }else{
+            //PlaceHolder Pic
+
+        }
     }
 
     @Override
@@ -60,6 +67,7 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
         public TextView nomPOITV,categoryPOITV,markAndAvisTV,addressTV,distanceTV;
         public RatingBar ratingPOI;
         public Button moreInfosButton;
+        public ImageView principalPicPOI;
 
         public POIAskedViewHolder(View view) {
             super(view);
@@ -70,6 +78,7 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
             distanceTV = view.findViewById(R.id.distanceTV);
             ratingPOI = view.findViewById(R.id.ratingPOI);
             moreInfosButton = view.findViewById(R.id.moreInfosButton);
+            principalPicPOI = view.findViewById(R.id.principalPicPOI);
         }
     }
 }

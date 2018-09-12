@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/principalPicPOI"
                 android:layout_width="wrap_content"
                 android:layout_height="182dp"
                 android:adjustViewBounds="true"
@@ -41,7 +41,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/principalPicPOI" />
 
             <TextView
                 android:id="@+id/categoryPOITV"

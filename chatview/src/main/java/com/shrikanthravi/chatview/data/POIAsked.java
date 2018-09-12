@@ -11,6 +11,7 @@ public class POIAsked {
     private String distance_poi;
     private String id_poi;
     private String nb_avis_poi;
+    private String link_photo_poi;
     private View.OnClickListener onClickListener;
 
     public String getName_poi() {
@@ -75,5 +76,13 @@ public class POIAsked {
 
     public void setNb_avis_poi(String nb_avis_poi) {
         this.nb_avis_poi = nb_avis_poi;
+    }
+
+    public String getLink_photo_poi() {
+        return link_photo_poi;
+    }
+
+    public void setLink_photo_poi(String link_photo_poi) {
+        this.link_photo_poi = link_photo_poi;
     }
 }
