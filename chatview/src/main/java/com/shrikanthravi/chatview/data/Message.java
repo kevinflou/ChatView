@@ -44,6 +44,7 @@ public class Message {
     protected List<CarouselCell> list_carousel;
     protected Weather weather;
     protected StopAsked stopAsked;
+    protected List<POIAsked> listpoiAsked;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -60,7 +61,8 @@ public class Message {
         LeftCarousel,
         LeftMeteoMessage,
         LeftStopMessage,
-        LeftTypingMessage
+        LeftTypingMessage,
+        LeftPOIMessage
     }
 
     public Message(){
@@ -182,6 +184,14 @@ public class Message {
     public StopAsked getStopAsked() { return stopAsked; }
 
     public void setStopAsked(StopAsked stopAsked) { this.stopAsked = stopAsked; }
+
+    public List<POIAsked> getListpoiAsked() {
+        return listpoiAsked;
+    }
+
+    public void setListpoiAsked(List<POIAsked> listpoiAsked) {
+        this.listpoiAsked = listpoiAsked;
+    }
 }
 
 

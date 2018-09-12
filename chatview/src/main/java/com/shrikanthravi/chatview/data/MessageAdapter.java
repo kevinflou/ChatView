@@ -157,6 +157,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 type = 20;
                 break;
             }
+            case LeftPOIMessage: {
+                type = 996;
+                break;
+            }
             case LeftStopMessage: {
                 type = 997;
                 break;
@@ -261,9 +265,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                                             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_stop_layout,parent,false);
                                                             viewHolder = new LeftStopViewHolder(view);
                                                         }else {
-                                                            View view = LayoutInflater.from(parent.getContext())
-                                                                    .inflate(R.layout.right_audio_layout, parent, false);
-                                                            viewHolder = new RightAudioViewHolder(view);
+                                                            if(viewType == 996){
+                                                                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                                                viewHolder = new LeftCarouselViewHolder(view);
+                                                            }else {
+                                                                View view = LayoutInflater.from(parent.getContext())
+                                                                        .inflate(R.layout.right_audio_layout, parent, false);
+                                                                viewHolder = new RightAudioViewHolder(view);
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -295,69 +304,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     protected class LeftCarouselViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView carouselRV;
         public List<CarouselCell> list_cC;
-        //public TextView leftTV,leftTimeTV,senderNameTV;
-        //public ExpandableLayout leftEL;
-        //public ImageView lefttMessageStatusIV,leftBubbleIconIV;
-        //public CardView leftBubbleIconCV;
 
         public LeftCarouselViewHolder(View view) {
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
-            //setAdapterRecyclerView(carouselRV);
-            //leftTimeTV = view.findViewById(R.id.leftTimeTV);
-            //leftEL = view.findViewById(R.id.leftEL);
-            //senderNameTV = view.findViewById(R.id.senderNameTV);
-            //leftBubbleIconIV = view.findViewById(R.id.leftBubbleIconIV);
-            //leftBubbleIconCV = view.findViewById(R.id.leftBubbleIconCV);
-            //setTimeTextColor(timeTextColor);
-            //setSenderNameTextColor(senderNameTextColor);
-            //showSenderName(showSenderName);
-            //showLeftBubbleIcon(showLeftBubbleIcon);
-            //setTextSize(textSize);
         }
-
-        //public void setAdapterRecyclerView(RecyclerView rV){
-
-        //}
-
-        /*public void setBackgroundColor(int color){
-            Drawable backgroundDrawable = DrawableCompat.wrap(leftTV.getBackground()).mutate();
-            DrawableCompat.setTint(backgroundDrawable,color);
-        }
-
-        public void setTextColor(int color){
-            leftTV.setTextColor(color);
-        }
-
-        public void setTimeTextColor(int color){
-            leftTimeTV.setTextColor(color);
-        }
-
-        public void setSenderNameTextColor(int color){
-            senderNameTV.setTextColor(color);
-        }
-
-        public void showSenderName(boolean b){
-            if(b){
-                senderNameTV.setVisibility(View.VISIBLE);
-            }
-            else{
-                senderNameTV.setVisibility(View.GONE);
-            }
-        }
-
-        public void showLeftBubbleIcon(boolean b){
-            if(b){
-                leftBubbleIconCV.setVisibility(View.VISIBLE);
-            }
-            else{
-                leftBubbleIconCV.setVisibility(View.GONE);
-            }
-        }*/
-
-        /*public void setTextSize(float size){
-            leftTV.setTextSize(size);
-        }*/
     }
 
     protected class LeftStopViewHolder extends RecyclerView.ViewHolder {
@@ -1419,73 +1370,88 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final Message message = messageList.get(position);
         messageList.get(position).setIndexPosition(position);
         if(holder instanceof LeftStopViewHolder){
-            final LeftStopViewHolder holder1 = (LeftStopViewHolder) holder;
-            holder1.stopAsked = message.getStopAsked();
+                final LeftStopViewHolder holder1 = (LeftStopViewHolder) holder;
+                holder1.stopAsked = message.getStopAsked();
 
-            RecyclerView rV = holder1.lignesDeserviesRV;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-            layoutManager.setStackFromEnd(true);
-            if(rV.getItemDecorationCount() == 0){
-                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
-                rV.addItemDecoration(horizontalSpaceDecorationItem);
-            }
-            rV.setLayoutManager(layoutManager);
-            rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
-            StopAskedAdapter saA = new StopAskedAdapter(holder1.stopAsked.getList_lignes(),context,rV);
-            rV.setAdapter(saA);
-            rV.scrollToPosition(0);
+                RecyclerView rV = holder1.lignesDeserviesRV;
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                layoutManager.setStackFromEnd(true);
+                if (rV.getItemDecorationCount() == 0) {
+                    HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                    rV.addItemDecoration(horizontalSpaceDecorationItem);
+                }
+                rV.setLayoutManager(layoutManager);
+                rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+                StopAskedAdapter saA = new StopAskedAdapter(holder1.stopAsked.getList_lignes(), context, rV);
+                rV.setAdapter(saA);
+                rV.scrollToPosition(0);
 
-            RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener() {
-                @Override
-                public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                    int action = e.getAction();
-                    switch (action) {
-                        case MotionEvent.ACTION_MOVE:
-                            rv.getParent().requestDisallowInterceptTouchEvent(true);
-                            break;
+                RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener() {
+                    @Override
+                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                        int action = e.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_MOVE:
+                                rv.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+                        }
+                        return false;
                     }
-                    return false;
+
+                    @Override
+                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+                    }
+
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                };
+
+                rV.addOnItemTouchListener(mScrollTouchListener);
+
+                holder1.moreInfosStopButton.setOnClickListener(holder1.stopAsked.getOnClickListener());
+
+                holder1.StopNameTV.setText(holder1.stopAsked.getName_arret());
+                holder1.distanceToPointTV.setText(holder1.stopAsked.getDistance());
+                if (holder1.stopAsked.getHandicap().equals("NON")) {
+                    holder1.handicapSupportedIV.setVisibility(View.GONE);
                 }
-
-                @Override
-                public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-                }
-
-                @Override
-                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                }
-            };
-
-            rV.addOnItemTouchListener(mScrollTouchListener);
-
-            holder1.moreInfosStopButton.setOnClickListener(holder1.stopAsked.getOnClickListener());
-
-            holder1.StopNameTV.setText(holder1.stopAsked.getName_arret());
-            holder1.distanceToPointTV.setText(holder1.stopAsked.getDistance());
-            if(holder1.stopAsked.getHandicap().equals("NON")){
-                holder1.handicapSupportedIV.setVisibility(View.GONE);
-            }
         }else{
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
-            System.out.println(message.getList_carousel().size());
-            holder1.list_cC = message.getList_carousel();
+            if(message.getMessageType() == Message.MessageType.LeftStopMessage) {
+                System.out.println(message.getList_carousel().size());
+                holder1.list_cC = message.getList_carousel();
 
-            RecyclerView rV = holder1.carouselRV;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
-            layoutManager.setStackFromEnd(true);
-            if(rV.getItemDecorationCount() == 0){
-                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
-                rV.addItemDecoration(horizontalSpaceDecorationItem);
+                RecyclerView rV = holder1.carouselRV;
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                layoutManager.setStackFromEnd(true);
+                if (rV.getItemDecorationCount() == 0) {
+                    HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                    rV.addItemDecoration(horizontalSpaceDecorationItem);
+                }
+                rV.setLayoutManager(layoutManager);
+                rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+                CarouselAdapter cA = new CarouselAdapter(holder1.list_cC, context, rV);
+                rV.setAdapter(cA);
+                rV.scrollToPosition(0);
+            }else if (message.getMessageType() == Message.MessageType.LeftPOIMessage){
+                System.out.println(message.getListpoiAsked().size());
+                RecyclerView rV = holder1.carouselRV;
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                layoutManager.setStackFromEnd(true);
+                if (rV.getItemDecorationCount() == 0) {
+                    HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                    rV.addItemDecoration(horizontalSpaceDecorationItem);
+                }
+                rV.setLayoutManager(layoutManager);
+                rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+                POIAskedAdapter poiAA = new POIAskedAdapter(message.getListpoiAsked(), context);
+                rV.setAdapter(poiAA);
+                rV.scrollToPosition(0);
             }
-            rV.setLayoutManager(layoutManager);
-            rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
-            CarouselAdapter cA = new CarouselAdapter(holder1.list_cC,context,rV);
-            rV.setAdapter(cA);
-            rV.scrollToPosition(0);
-
             /*holder1.leftTimeTV.setText(message.getTime());
 
             if (message.getUserIcon() != null) {
