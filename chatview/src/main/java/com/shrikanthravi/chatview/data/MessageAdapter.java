@@ -1426,8 +1426,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder1.list_cC = message.getList_carousel();
 
                 RecyclerView rV = holder1.carouselRV;
-                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true);
-                layoutManager.setStackFromEnd(true);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                //layoutManager.setStackFromEnd(true);
                 if (rV.getItemDecorationCount() == 0) {
                     HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
                     rV.addItemDecoration(horizontalSpaceDecorationItem);
@@ -1440,8 +1440,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else if (message.getMessageType() == Message.MessageType.LeftPOIMessage){
                 System.out.println(message.getListpoiAsked().size());
                 RecyclerView rV = holder1.carouselRV;
-                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true);
-                layoutManager.setStackFromEnd(true);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                //layoutManager.setStackFromEnd(true);
                 if (rV.getItemDecorationCount() == 0) {
                     HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
                     rV.addItemDecoration(horizontalSpaceDecorationItem);
