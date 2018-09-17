@@ -49,12 +49,16 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
             @Override
-            public boolean canScrollVertically(){
-                return false;
+            public boolean canScrollHorizontally() {
+                return true;
+            }
+
+            @Override
+            public boolean canScrollVertically() {
+                return true;
             }
         };
         holder.lignesDeserviesRV.setLayoutManager(layoutManager);
-        //holder.lignesDeserviesRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
         holder.lignesDeserviesRV.setNestedScrollingEnabled(false);

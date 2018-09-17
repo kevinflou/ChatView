@@ -1452,7 +1452,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else if (message.getMessageType() == Message.MessageType.LeftStopMessage){
                 System.out.println(message.getListStopAsked());
                 RecyclerView rV = holder1.carouselRV;
-                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
+                    @Override
+                    public boolean canScrollHorizontally() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean canScrollVertically() {
+                        return true;
+                    }
+                };
                 //layoutManager.setStackFromEnd(true);
                 if (rV.getItemDecorationCount() == 0) {
                     HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
@@ -1462,7 +1472,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
                 StopAskedAdapter sAA = new StopAskedAdapter(message.getListStopAsked(), context);
                 rV.setAdapter(sAA);
-                rV.scrollToPosition(0);
+                //rV.scrollToPosition(0);
                 rV.setNestedScrollingEnabled(false);
                 rV.requestDisallowInterceptTouchEvent(true);
                 rV.getParent().requestDisallowInterceptTouchEvent(true);
