@@ -50,7 +50,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
-        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
+        //StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
             @Override
             public boolean canScrollHorizontally() {
@@ -62,7 +62,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
                 return true;
             }
         };
-        holder.lignesDeserviesRV.setLayoutManager(gridLayoutManager);
+        holder.lignesDeserviesRV.setLayoutManager(layoutManager);
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
         holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
