@@ -1452,7 +1452,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else if (message.getMessageType() == Message.MessageType.LeftStopMessage){
                 System.out.println(message.getListStopAsked());
                 RecyclerView rV = holder1.carouselRV;
-                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false){
                     @Override
                     public boolean canScrollHorizontally() {
                         return true;
