@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -48,6 +49,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,1);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
             @Override
             public boolean canScrollHorizontally() {
@@ -59,7 +61,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
                 return true;
             }
         };
-        holder.lignesDeserviesRV.setLayoutManager(layoutManager);
+        holder.lignesDeserviesRV.setLayoutManager(gridLayoutManager);
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
         //holder.lignesDeserviesRV.setNestedScrollingEnabled(true);
