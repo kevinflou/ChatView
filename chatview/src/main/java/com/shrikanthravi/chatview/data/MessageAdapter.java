@@ -108,8 +108,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-
-
         int type=0;
         //System.out.println(messageList.get(position).getMessageType());
         switch (messageList.get(position).getMessageType()) {

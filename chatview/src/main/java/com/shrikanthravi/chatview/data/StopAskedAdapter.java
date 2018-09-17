@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import com.shrikanthravi.chatview.R;
 
 import java.util.List;
+
+import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 
 public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.StopAskedViewHolder> {
 
@@ -43,9 +47,16 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
-        //holder.numeroLigneTV.setText(ligneDeservieList.get(position).getShort_name());
-        //holder.longNameTV.setText(ligneDeservieList.get(position).getLong_name());
-        //holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ligneDeservieList.get(position).getColor_ligne()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        if (holder.lignesDeserviesRV.getItemDecorationCount() == 0) {
+            HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+            holder.lignesDeserviesRV.addItemDecoration(horizontalSpaceDecorationItem);
+        }
+        holder.lignesDeserviesRV.setLayoutManager(layoutManager);
+        holder.lignesDeserviesRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+        LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
+        holder.lignesDeserviesRV.setAdapter(lda);
+        holder.lignesDeserviesRV.scrollToPosition(0);
     }
 
     @Override
