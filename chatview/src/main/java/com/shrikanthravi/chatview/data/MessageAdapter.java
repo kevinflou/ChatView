@@ -1463,7 +1463,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         return true;
                     }
                 };
-                //layoutManager.setStackFromEnd(true);
+                //layoutManager.setStackFromEnd(true);//
                 if (rV.getItemDecorationCount() == 0) {
                     HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
                     rV.addItemDecoration(horizontalSpaceDecorationItem);
