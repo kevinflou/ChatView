@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +66,8 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.setHasFixedSize(true);
+        holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
+
     }
 
     @Override
@@ -76,6 +79,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         public TextView stopNameTV,distanceToPointTV;
         public ImageView handicapSupportedIV;
         public RecyclerView lignesDeserviesRV;
+        public Button moreInfosStopButton;
 
         public StopAskedViewHolder(View view) {
             super(view);
@@ -83,6 +87,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
             lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
+            moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
         }
     }
 }
