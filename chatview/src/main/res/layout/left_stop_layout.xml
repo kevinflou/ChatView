@@ -72,14 +72,9 @@
                 android:id="@+id/handicapSupportedIV"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/stopNameTV"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/boy" />
+                app:srcCompat="@drawable/img_services_14"
+                tools:layout_editor_absoluteX="309dp"
+                tools:layout_editor_absoluteY="8dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/lignesDeserviesRV"
