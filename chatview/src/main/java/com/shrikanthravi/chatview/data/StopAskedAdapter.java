@@ -61,7 +61,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         holder.lignesDeserviesRV.setLayoutManager(layoutManager);
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
-        holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
+        holder.lignesDeserviesRV.setNestedScrollingEnabled(true);
         holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.setHasFixedSize(true);

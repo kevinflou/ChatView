@@ -1474,7 +1474,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 StopAskedAdapter sAA = new StopAskedAdapter(message.getListStopAsked(), context);
                 rV.setAdapter(sAA);
                 //rV.scrollToPosition(0);
-                rV.setNestedScrollingEnabled(false);
+                rV.setNestedScrollingEnabled(true);
                 rV.requestDisallowInterceptTouchEvent(true);
                 rV.getParent().requestDisallowInterceptTouchEvent(true);
             }
