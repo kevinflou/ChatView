@@ -1463,6 +1463,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 StopAskedAdapter sAA = new StopAskedAdapter(message.getListStopAsked(), context);
                 rV.setAdapter(sAA);
                 rV.scrollToPosition(0);
+                rV.setNestedScrollingEnabled(false);
             }
             /*holder1.leftTimeTV.setText(message.getTime());
 
