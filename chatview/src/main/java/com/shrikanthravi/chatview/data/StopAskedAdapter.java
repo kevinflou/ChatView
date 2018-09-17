@@ -48,7 +48,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
             @Override
             public boolean canScrollHorizontally() {
                 return true;
