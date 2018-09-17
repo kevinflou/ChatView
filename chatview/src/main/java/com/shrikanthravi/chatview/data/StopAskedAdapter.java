@@ -47,7 +47,12 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
+            @Override
+            public boolean canScrollVertically(){
+                return false;
+            }
+        };
         holder.lignesDeserviesRV.setLayoutManager(layoutManager);
         //holder.lignesDeserviesRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
