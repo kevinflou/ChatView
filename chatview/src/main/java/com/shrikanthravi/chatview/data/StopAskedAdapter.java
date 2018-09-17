@@ -58,6 +58,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         holder.lignesDeserviesRV.setAdapter(lda);
         holder.lignesDeserviesRV.scrollToPosition(0);
         holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
+        holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
     }
 
     @Override

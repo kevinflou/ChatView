@@ -1464,6 +1464,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 rV.setAdapter(sAA);
                 rV.scrollToPosition(0);
                 rV.setNestedScrollingEnabled(false);
+                rV.requestDisallowInterceptTouchEvent(true);
             }
             /*holder1.leftTimeTV.setText(message.getTime());
 
