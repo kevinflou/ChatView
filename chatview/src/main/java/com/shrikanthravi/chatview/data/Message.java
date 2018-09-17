@@ -43,7 +43,7 @@ public class Message {
     protected int indexPosition;
     protected List<CarouselCell> list_carousel;
     protected Weather weather;
-    protected StopAsked stopAsked;
+    protected List<StopAsked> stopAsked;
     protected List<POIAsked> listpoiAsked;
 
     public enum MessageType{
@@ -181,9 +181,9 @@ public class Message {
         this.weather = weather;
     }
 
-    public StopAsked getStopAsked() { return stopAsked; }
+    public List<StopAsked> getListStopAsked() { return stopAsked; }
 
-    public void setStopAsked(StopAsked stopAsked) { this.stopAsked = stopAsked; }
+    public void setListStopAsked(List<StopAsked> stopAsked) { this.stopAsked = stopAsked; }
 
     public List<POIAsked> getListpoiAsked() {
         return listpoiAsked;

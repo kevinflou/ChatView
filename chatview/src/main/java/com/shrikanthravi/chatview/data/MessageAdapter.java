@@ -262,8 +262,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                                         viewHolder = new LeftWeatherViewHolder(view);
                                                     } else {
                                                         if (viewType == 997){
-                                                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_stop_layout,parent,false);
-                                                            viewHolder = new LeftStopViewHolder(view);
+                                                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                                            viewHolder = new LeftCarouselViewHolder(view);
                                                         }else {
                                                             if(viewType == 996){
                                                                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
@@ -1369,7 +1369,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         final Message message = messageList.get(position);
         messageList.get(position).setIndexPosition(position);
-        if(holder instanceof LeftStopViewHolder){
+        /*if(holder instanceof LeftStopViewHolder){
                 final LeftStopViewHolder holder1 = (LeftStopViewHolder) holder;
                 holder1.stopAsked = message.getStopAsked();
 
@@ -1418,7 +1418,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 if (holder1.stopAsked.getHandicap().equals("NON")) {
                     holder1.handicapSupportedIV.setVisibility(View.GONE);
                 }
-        }else{
+        }else{*/
         if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
             if(message.getMessageType() == Message.MessageType.LeftCarousel) {
@@ -1450,6 +1450,20 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
                 POIAskedAdapter poiAA = new POIAskedAdapter(message.getListpoiAsked(), context);
                 rV.setAdapter(poiAA);
+                rV.scrollToPosition(0);
+            }else if (message.getMessageType() == Message.MessageType.LeftStopMessage){
+                System.out.println(message.getListStopAsked());
+                RecyclerView rV = holder1.carouselRV;
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                //layoutManager.setStackFromEnd(true);
+                if (rV.getItemDecorationCount() == 0) {
+                    HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                    rV.addItemDecoration(horizontalSpaceDecorationItem);
+                }
+                rV.setLayoutManager(layoutManager);
+                rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+                StopAskedAdapter sAA = new StopAskedAdapter(message.getListStopAsked(), context);
+                rV.setAdapter(sAA);
                 rV.scrollToPosition(0);
             }
             /*holder1.leftTimeTV.setText(message.getTime());
@@ -1799,7 +1813,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             }
         }
-        }
+        //}
     }
 
 

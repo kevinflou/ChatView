@@ -19,46 +19,51 @@ import java.util.List;
 
 public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.StopAskedViewHolder> {
 
-    private List<LigneDeservie> ligneDeservieList;
+    private List<StopAsked> listStops;
     private Context context;
-    private RecyclerView recyclerView;
 
-    public StopAskedAdapter(List<LigneDeservie> verticalList, Context context, RecyclerView recyclerView) {
-        this.ligneDeservieList = verticalList;
+    public StopAskedAdapter(List<StopAsked> listStops, Context context) {
+        this.listStops = listStops;
         this.context = context;
-        this.recyclerView = recyclerView;
     }
 
     @Override
     public StopAskedAdapter.StopAskedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.ligne_deservie_cell, parent, false);
+                .inflate(R.layout.left_stop_layout, parent, false);
         return new StopAskedAdapter.StopAskedViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(StopAskedAdapter.StopAskedViewHolder holder, int position) {
-        holder.numeroLigneTV.setText(ligneDeservieList.get(position).getShort_name());
-        holder.longNameTV.setText(ligneDeservieList.get(position).getLong_name());
-        holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ligneDeservieList.get(position).getColor_ligne()));
+        StopAsked stopAsk = listStops.get(position);
+
+        holder.stopNameTV.setText(stopAsk.getName_arret());
+        holder.distanceToPointTV.setText(stopAsk.getDistance());
+        if(stopAsk.getHandicap() == 0){
+            holder.handicapSupportedIV.setVisibility(View.GONE);
+        }
+        //holder.numeroLigneTV.setText(ligneDeservieList.get(position).getShort_name());
+        //holder.longNameTV.setText(ligneDeservieList.get(position).getLong_name());
+        //holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ligneDeservieList.get(position).getColor_ligne()));
     }
 
     @Override
     public int getItemCount() {
-        return ligneDeservieList.size();
+        return listStops.size();
     }
 
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
-        public TextView numeroLigneTV,longNameTV;
-        public ImageView typeLigneIV;
-        public FrameLayout bgLigneNumber;
+        public TextView stopNameTV,distanceToPointTV;
+        public ImageView handicapSupportedIV;
+        public RecyclerView lignesDeserviesRV;
 
         public StopAskedViewHolder(View view) {
             super(view);
-            numeroLigneTV = view.findViewById(R.id.numeroLigneTV);
-            longNameTV = view.findViewById(R.id.longNameTV);
-            typeLigneIV = view.findViewById(R.id.typeLigneIV);
-            bgLigneNumber = view.findViewById(R.id.bgLigneNumber);
+            stopNameTV = view.findViewById(R.id.stopNameTV);
+            distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
+            handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
+            lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
         }
     }
 }

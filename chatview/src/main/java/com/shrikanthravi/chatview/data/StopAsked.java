@@ -8,7 +8,7 @@ public class StopAsked {
     private String stop_id;
     private String name_arret;
     private String distance;
-    private String handicap;
+    private int handicap;
     private List<LigneDeservie> list_lignes;
     private View.OnClickListener onClickListener;
 
@@ -36,11 +36,11 @@ public class StopAsked {
         this.distance = distance;
     }
 
-    public String getHandicap() {
+    public int getHandicap() {
         return handicap;
     }
 
-    public void setHandicap(String handicap) {
+    public void setHandicap(int handicap) {
         this.handicap = handicap;
     }
 
