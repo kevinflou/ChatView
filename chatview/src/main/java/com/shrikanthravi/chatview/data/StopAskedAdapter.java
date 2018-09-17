@@ -48,15 +48,10 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        if (holder.lignesDeserviesRV.getItemDecorationCount() == 0) {
-            HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
-            holder.lignesDeserviesRV.addItemDecoration(horizontalSpaceDecorationItem);
-        }
         holder.lignesDeserviesRV.setLayoutManager(layoutManager);
-        holder.lignesDeserviesRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+        //holder.lignesDeserviesRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
-        holder.lignesDeserviesRV.scrollToPosition(0);
         holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
         holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
