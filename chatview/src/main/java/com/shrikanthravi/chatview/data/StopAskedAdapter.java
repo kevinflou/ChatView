@@ -83,7 +83,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
         public TextView stopNameTV,distanceToPointTV;
         public ImageView handicapSupportedIV;
-        public NestedRecyclerView lignesDeserviesRV;
+        public RecyclerView lignesDeserviesRV;
         public Button moreInfosStopButton;
 
         public StopAskedViewHolder(View view) {
