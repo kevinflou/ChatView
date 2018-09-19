@@ -1474,10 +1474,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 StopAskedAdapter sAA = new StopAskedAdapter(message.getListStopAsked(), context);
                 rV.setAdapter(sAA);
                 //rV.scrollToPosition(0);
-                rV.setNestedScrollingEnabled(false);
-                rV.requestDisallowInterceptTouchEvent(true);
-                rV.getParent().requestDisallowInterceptTouchEvent(true);
-                rV.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
+                //rV.setNestedScrollingEnabled(false);
+                //rV.requestDisallowInterceptTouchEvent(true);
+                //rV.getParent().requestDisallowInterceptTouchEvent(true);
+                /*rV.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
                     @Override
                     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
                         if (e.getAction() == MotionEvent.ACTION_DOWN
@@ -1486,7 +1486,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         }
                         return false;
                     }
-                });
+                });*/
             }
             /*holder1.leftTimeTV.setText(message.getTime());
 
