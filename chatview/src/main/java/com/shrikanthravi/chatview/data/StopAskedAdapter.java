@@ -72,7 +72,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         //holder.lignesDeserviesRV.setHasFixedSize(true);
         holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
 
-        holder.nestedScrollView.setNestedScrollingEnabled(false);
+        //holder.nestedScrollView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -83,9 +83,8 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
         public TextView stopNameTV,distanceToPointTV;
         public ImageView handicapSupportedIV;
-        public RecyclerView lignesDeserviesRV;
+        public NestedRecyclerView lignesDeserviesRV;
         public Button moreInfosStopButton;
-        public NestedScrollView nestedScrollView;
 
         public StopAskedViewHolder(View view) {
             super(view);
@@ -94,7 +93,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
             lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
-            nestedScrollView = view.findViewById(R.id.nestedScrollView);
+            //nestedScrollView = view.findViewById(R.id.nestedScrollView);
         }
     }
 }
