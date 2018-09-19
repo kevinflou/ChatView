@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -66,11 +67,12 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
         holder.lignesDeserviesRV.setAdapter(lda);
         holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
-        holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
-        holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
-        holder.lignesDeserviesRV.setHasFixedSize(true);
+        //holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
+        //holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
+        //holder.lignesDeserviesRV.setHasFixedSize(true);
         holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
 
+        holder.nestedScrollView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -83,6 +85,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         public ImageView handicapSupportedIV;
         public RecyclerView lignesDeserviesRV;
         public Button moreInfosStopButton;
+        public NestedScrollView nestedScrollView;
 
         public StopAskedViewHolder(View view) {
             super(view);
@@ -91,6 +94,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
             lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
+            nestedScrollView = view.findViewById(R.id.nestedScrollView);
         }
     }
 }
