@@ -79,12 +79,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/img_services_14" />
 
-            <com.shrikanthravi.chatview.data.NestedRecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/lignesDeserviesRV"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"
+                android:descendantFocusability="blocksDescendants"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
