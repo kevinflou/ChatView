@@ -115,7 +115,7 @@ public class ChatView extends RelativeLayout {
         messageAdapter = new MessageAdapter(messageList,context,chatRV);
         WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(context,LinearLayoutManager.VERTICAL,true);
         layoutManager.setStackFromEnd(true);
-        chatRV.setNestedScrollingEnabled(false);
+        //chatRV.setNestedScrollingEnabled(false);
         chatRV.setLayoutManager(layoutManager);
         chatRV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         chatRV.setAdapter(messageAdapter);
