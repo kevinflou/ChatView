@@ -63,9 +63,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
                 return true;
             }
         };
-        holder.lignesDeserviesRV.setLayoutManager(layoutManager);
         LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
-        holder.lignesDeserviesRV.setAdapter(lda);
         //holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
         //holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
         //holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
@@ -83,7 +81,6 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
         public TextView stopNameTV,distanceToPointTV;
         public ImageView handicapSupportedIV;
-        public RecyclerView lignesDeserviesRV;
         public Button moreInfosStopButton;
 
         public StopAskedViewHolder(View view) {
@@ -91,7 +88,6 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             stopNameTV = view.findViewById(R.id.stopNameTV);
             distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
-            lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
             //nestedScrollView = view.findViewById(R.id.nestedScrollView);
         }

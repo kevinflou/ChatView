@@ -10,9 +10,13 @@
         android:id="@+id/moreInfosStopButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Plus d'infos"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/transparent"
+        android:text="Plus d'infos ?"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leftIVCV" />
 
     <android.support.v7.widget.CardView
@@ -51,23 +55,15 @@
                 android:id="@+id/distanceToPointTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_directions_walk_black_24dp"
                 android:gravity="center_vertical"
                 android:text="450m"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stopNameTV" />
-
-            <TextView
-                android:id="@+id/peuImporteTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Lignes Déservies :"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/distanceToPointTV" />
 
             <ImageView
                 android:id="@+id/handicapSupportedIV"
@@ -78,18 +74,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/img_services_14" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/lignesDeserviesRV"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="false"
-                android:descendantFocusability="blocksDescendants"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/peuImporteTV" />
 
         </android.support.constraint.ConstraintLayout>
 
