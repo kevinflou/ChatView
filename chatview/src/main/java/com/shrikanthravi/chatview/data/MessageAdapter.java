@@ -310,7 +310,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     protected class LeftStopViewHolder extends RecyclerView.ViewHolder {
-        public RecyclerView lignesDeserviesRV;
         public ImageView handicapSupportedIV;
         public TextView StopNameTV,distanceToPointTV;
         public Button moreInfosStopButton;
@@ -319,7 +318,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public LeftStopViewHolder(View view) {
             super(view);
-            lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             StopNameTV = view.findViewById(R.id.stopNameTV);
             distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);

@@ -51,23 +51,6 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
-        //StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
-            @Override
-            public boolean canScrollHorizontally() {
-                return true;
-            }
-
-            @Override
-            public boolean canScrollVertically() {
-                return true;
-            }
-        };
-        LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
-        //holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
-        //holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
-        //holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
-        //holder.lignesDeserviesRV.setHasFixedSize(true);
         holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
 
         //holder.nestedScrollView.setNestedScrollingEnabled(false);
