@@ -28,7 +28,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:elevation="0dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/background_color2"
         app:cardCornerRadius="15dp"
         app:contentPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:text="STOP NAME"
+                android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,9 +59,10 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/ic_directions_walk_black_24dp"
+                android:drawableLeft="@drawable/ic_directions_walk_white_24dp"
                 android:gravity="center_vertical"
                 android:text="450m"
+                android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stopNameTV" />
@@ -73,7 +75,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_services_14" />
+                app:srcCompat="@drawable/ic_accessible_white_24dp" />
 
         </android.support.constraint.ConstraintLayout>
 
