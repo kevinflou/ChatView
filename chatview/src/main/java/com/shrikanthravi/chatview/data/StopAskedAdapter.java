@@ -50,7 +50,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         holder.distanceToPointTV.setText(stopAsk.getDistance());
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
-        }//
+        }
         //StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
             @Override
