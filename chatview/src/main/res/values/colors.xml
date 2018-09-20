@@ -7,6 +7,9 @@
     <color name="colorAccent2">#DADADA</color>
     <color name="colorAccent3">#ff7e80</color>
 
+    <color name="background_color">#475059</color>
+    <color name="background_color2">#272b31</color>
+
 
     <color name="transparent_black_hex_1">#11000000</color>
     <color name="transparent_black_hex_2">#22000000</color>
@@ -34,7 +37,7 @@
     <color name="transparent_black_percent_40">#66000000</color>
     <color name="transparent_black_percent_45">#73000000</color>
     <color name="transparent_black_percent_50">#80000000</color>
-    <color name="transparent_black_percent_55">#8C000000</color>
+    <color name="transparent_black_percent_55">#8c000000</color>
     <color name="transparent_black_percent_60">#99000000</color>
     <color name="transparent_black_percent_65">#A6000000</color>
     <color name="transparent_black_percent_70">#B3000000</color>

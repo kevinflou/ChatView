@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="15dp"
+        app:cardBackgroundColor="@color/background_color2"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +22,10 @@
 
             <ImageView
                 android:id="@+id/principalPicPOI"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
                 android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +39,7 @@
                 android:layout_marginTop="8dp"
                 android:text="NOMPOI"
                 android:textAllCaps="true"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="CATEGORYPOI"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nomPOITV" />
 
@@ -72,7 +74,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="3.63 (21 avis)"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintStart_toEndOf="@+id/ratingPOI"
                 app:layout_constraintTop_toBottomOf="@+id/categoryPOITV" />
 
@@ -84,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="7 Rue du test \n59300 Valenciennes"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toStartOf="@+id/distanceTV"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +100,7 @@
                 android:layout_marginTop="16dp"
                 android:drawableLeft="@drawable/ic_directions_walk_black_18dp"
                 android:text="à 99.9 km"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingPOI" />
 
@@ -110,7 +112,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@color/background_color"
                 android:text="Plus d'infos"
+                android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
