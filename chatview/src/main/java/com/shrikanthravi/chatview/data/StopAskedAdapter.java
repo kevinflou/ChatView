@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,9 +50,27 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         if(stopAsk.getHandicap() == 0){
             holder.handicapSupportedIV.setVisibility(View.GONE);
         }
+        //StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false){
+            @Override
+            public boolean canScrollHorizontally() {
+                return true;
+            }
+
+            @Override
+            public boolean canScrollVertically() {
+                return true;
+            }
+        };
+        holder.lignesDeserviesRV.setLayoutManager(layoutManager);
+        LignesDeserviesAdapter lda = new LignesDeserviesAdapter(stopAsk.getList_lignes(),context);
+        holder.lignesDeserviesRV.setAdapter(lda);
+        holder.lignesDeserviesRV.setNestedScrollingEnabled(false);
+        holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
+        holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
+        holder.lignesDeserviesRV.setHasFixedSize(true);
         holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
 
-        //holder.nestedScrollView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -64,6 +81,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
     protected class StopAskedViewHolder extends RecyclerView.ViewHolder {
         public TextView stopNameTV,distanceToPointTV;
         public ImageView handicapSupportedIV;
+        public RecyclerView lignesDeserviesRV;
         public Button moreInfosStopButton;
 
         public StopAskedViewHolder(View view) {
@@ -71,8 +89,8 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
             stopNameTV = view.findViewById(R.id.stopNameTV);
             distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
+            lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
-            //nestedScrollView = view.findViewById(R.id.nestedScrollView);
         }
     }
 }
