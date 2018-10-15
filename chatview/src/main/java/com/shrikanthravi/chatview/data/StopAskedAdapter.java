@@ -69,6 +69,7 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
         holder.lignesDeserviesRV.requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.getParent().requestDisallowInterceptTouchEvent(true);
         holder.lignesDeserviesRV.setHasFixedSize(true);
+        holder.lignesDeserviesRV.bringToFront();
         holder.moreInfosStopButton.setOnClickListener(stopAsk.getOnClickListener());
 
     }
