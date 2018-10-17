@@ -76,6 +76,7 @@
                 app:srcCompat="@drawable/ic_accessible_white_24dp" />
 
             <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollViewRV"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:layout_constraintTop_toBottomOf="@+id/distanceToPointTV">
