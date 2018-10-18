@@ -1,29 +1,19 @@
 package com.shrikanthravi.chatview.data;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shrikanthravi.chatview.R;
 
 import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 
 public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.StopAskedViewHolder> {
 
@@ -92,8 +82,8 @@ public class StopAskedAdapter extends RecyclerView.Adapter<StopAskedAdapter.Stop
 
         public StopAskedViewHolder(View view) {
             super(view);
-            stopNameTV = view.findViewById(R.id.stopNameTV);
-            distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
+            stopNameTV = view.findViewById(R.id.ligneNameTV);
+            distanceToPointTV = view.findViewById(R.id.distanceToLigneTV);
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
             lignesDeserviesRV = view.findViewById(R.id.lignesDeserviesRV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);

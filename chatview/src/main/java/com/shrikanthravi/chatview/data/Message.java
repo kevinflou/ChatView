@@ -45,6 +45,7 @@ public class Message {
     protected Weather weather;
     protected List<StopAsked> stopAsked;
     protected List<POIAsked> listpoiAsked;
+    protected RouteAsked routeAsked;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -62,7 +63,8 @@ public class Message {
         LeftMeteoMessage,
         LeftStopMessage,
         LeftTypingMessage,
-        LeftPOIMessage
+        LeftPOIMessage,
+        LeftRouteMessage
     }
 
     public Message(){
@@ -191,6 +193,14 @@ public class Message {
 
     public void setListpoiAsked(List<POIAsked> listpoiAsked) {
         this.listpoiAsked = listpoiAsked;
+    }
+
+    public RouteAsked getRouteAsked() {
+        return routeAsked;
+    }
+
+    public void setRouteAsked(RouteAsked routeAsked) {
+        this.routeAsked = routeAsked;
     }
 }
 

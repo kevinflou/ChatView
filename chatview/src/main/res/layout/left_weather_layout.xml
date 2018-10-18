@@ -31,7 +31,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/stopNameTV"
+                android:id="@+id/ligneNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -42,14 +42,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/distanceToPointTV"
+                android:id="@+id/distanceToLigneTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Température Min : 00°"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stopNameTV" />
+                app:layout_constraintTop_toBottomOf="@+id/ligneNameTV" />
 
             <TextView
                 android:id="@+id/peuImporteTV"
@@ -59,7 +59,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Température Max : 99°"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/distanceToPointTV" />
+                app:layout_constraintTop_toBottomOf="@+id/distanceToLigneTV" />
 
             <TextView
                 android:id="@+id/currentConditionTV"
@@ -80,7 +80,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/stopNameTV"
+                app:layout_constraintStart_toEndOf="@+id/ligneNameTV"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/boy" />
 

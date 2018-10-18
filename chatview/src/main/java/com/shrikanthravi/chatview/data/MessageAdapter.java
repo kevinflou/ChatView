@@ -21,7 +21,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -155,6 +154,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 type = 20;
                 break;
             }
+            case LeftRouteMessage: {
+                type = 995;
+                break;
+            }
             case LeftPOIMessage: {
                 type = 996;
                 break;
@@ -187,114 +190,108 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         RecyclerView.ViewHolder viewHolder;
 
 
-        if(viewType==1){
+        if (viewType == 1) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.left_text_layout, parent, false);
             viewHolder = new LeftTextViewHolder(view);
-        }
-        else{
-            if(viewType==2){
+        } else {
+            if (viewType == 2) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.right_text_layout, parent, false);
                 viewHolder = new RightTextViewHolder(view);
-            }
-            else{
-                if(viewType==3){
+            } else {
+                if (viewType == 3) {
                     View view = LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.left_image_layout, parent, false);
                     viewHolder = new LeftImageViewHolder(view);
-                }
-                else{
-                    if(viewType==4){
+                } else {
+                    if (viewType == 4) {
                         View view = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.right_image_layout, parent, false);
                         viewHolder = new RightImageViewHolder(view);
-                    }
-                    else{
-                        if(viewType==5){
+                    } else {
+                        if (viewType == 5) {
                             View view = LayoutInflater.from(parent.getContext())
                                     .inflate(R.layout.left_images_layout, parent, false);
                             viewHolder = new LeftImagesViewHolder(view);
-                        }
-                        else{
-                            if(viewType==6) {
+                        } else {
+                            if (viewType == 6) {
                                 View view = LayoutInflater.from(parent.getContext())
                                         .inflate(R.layout.right_images_layout, parent, false);
                                 viewHolder = new RightImagesViewHolder(view);
-                            }
-                            else{
-                                if(viewType==20) {
+                            } else {
+                                if (viewType == 20) {
                                     View view = LayoutInflater.from(parent.getContext())
                                             .inflate(R.layout.left_typing_layout, parent, false);
                                     viewHolder = new LeftTypingViewHolder(view);
-                                }
-                                else{
-                                    if(viewType==7) {
+                                } else {
+                                    if (viewType == 7) {
                                         View view = LayoutInflater.from(parent.getContext())
                                                 .inflate(R.layout.left_video_layout, parent, false);
 
                                         viewHolder = new LeftVideoViewHolder(view);
 
-                                    }
-                                    else{
-                                        if(viewType==8) {
+                                    } else {
+                                        if (viewType == 8) {
 
                                             View view = LayoutInflater.from(parent.getContext())
                                                     .inflate(R.layout.right_video_layout, parent, false);
                                             viewHolder = new RightVideoViewHolder(view);
-                                        }
-                                        else {
-                                            if(viewType==9){
+                                        } else {
+                                            if (viewType == 9) {
                                                 View view = LayoutInflater.from(parent.getContext())
                                                         .inflate(R.layout.left_audio_layout, parent, false);
                                                 viewHolder = new LeftAudioViewHolder(view);
-                                            }
-                                            else{
-                                                if(viewType == 999){
-                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                            } else {
+                                                if (viewType == 999) {
+                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout, parent, false);
                                                     viewHolder = new LeftCarouselViewHolder(view);
-                                                }
-                                                else {
+                                                } else {
                                                     if (viewType == 998) {
                                                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_weather_layout, parent, false);
                                                         viewHolder = new LeftWeatherViewHolder(view);
                                                     } else {
-                                                        if (viewType == 997){
-                                                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                                        if (viewType == 997) {
+                                                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout, parent, false);
                                                             viewHolder = new LeftCarouselViewHolder(view);
-                                                        }else {
-                                                            if(viewType == 996){
-                                                                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout,parent,false);
+                                                        } else {
+                                                            if (viewType == 996) {
+                                                                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout, parent, false);
                                                                 viewHolder = new LeftCarouselViewHolder(view);
-                                                            }else {
-                                                                View view = LayoutInflater.from(parent.getContext())
-                                                                        .inflate(R.layout.right_audio_layout, parent, false);
-                                                                viewHolder = new RightAudioViewHolder(view);
+                                                            } else {
+                                                                if (viewType == 995) {
+                                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_route_layout, parent, false);
+                                                                    viewHolder = new LeftRouteViewHolder(view);
+                                                                } else {
+                                                                    View view = LayoutInflater.from(parent.getContext())
+                                                                            .inflate(R.layout.right_audio_layout, parent, false);
+                                                                    viewHolder = new RightAudioViewHolder(view);
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
+
+
                                             }
 
 
                                         }
-
-
-
                                     }
-                                }
 
+                                }
                             }
                         }
                     }
                 }
+
             }
 
-        }
 
-
-        if(viewHolder==null){
-            throw new RuntimeException("View Holder is null");
+            if (viewHolder == null) {
+                throw new RuntimeException("View Holder is null");
+            }
+            return viewHolder;
         }
         return viewHolder;
     }
@@ -302,6 +299,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     protected class LeftCarouselViewHolder extends RecyclerView.ViewHolder {
         public RecyclerView carouselRV;
         public List<CarouselCell> list_cC;
+
 
         public LeftCarouselViewHolder(View view) {
             super(view);
@@ -318,10 +316,26 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public LeftStopViewHolder(View view) {
             super(view);
-            StopNameTV = view.findViewById(R.id.stopNameTV);
-            distanceToPointTV = view.findViewById(R.id.distanceToPointTV);
+            StopNameTV = view.findViewById(R.id.ligneNameTV);
+            distanceToPointTV = view.findViewById(R.id.distanceToLigneTV);
             moreInfosStopButton = view.findViewById(R.id.moreInfosStopButton);
             handicapSupportedIV = view.findViewById(R.id.handicapSupportedIV);
+        }
+    }
+
+    protected class LeftRouteViewHolder extends RecyclerView.ViewHolder {
+        public TextView ligneNameTV,distanceToLigneTV,pictoTV;
+        public Button moreInfosLigneButton;
+
+        public RouteAsked routeAsked;
+
+
+        public LeftRouteViewHolder(View view) {
+            super(view);
+            ligneNameTV = view.findViewById(R.id.ligneNameTV);
+            distanceToLigneTV = view.findViewById(R.id.distanceToLigneTV);
+            pictoTV = view.findViewById(R.id.pictoTV);
+            moreInfosLigneButton = view.findViewById(R.id.moreInfosLigneButton);
         }
     }
 
@@ -338,8 +352,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public LeftWeatherViewHolder(View view) {
             super(view);
             HourperhourweatherRV = view.findViewById(R.id.hourperhourweatherRV);
-            currentTemperatureTV = view.findViewById(R.id.stopNameTV);
-            minTempTV = view.findViewById(R.id.distanceToPointTV);
+            currentTemperatureTV = view.findViewById(R.id.ligneNameTV);
+            minTempTV = view.findViewById(R.id.distanceToLigneTV);
             maxTempTV = view.findViewById(R.id.peuImporteTV);
             currentConditionTV = view.findViewById(R.id.currentConditionTV);
             currentIconIV = view.findViewById(R.id.currentIconIV);
@@ -1415,7 +1429,15 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     holder1.handicapSupportedIV.setVisibility(View.GONE);
                 }
         }else{*/
-        if (holder instanceof LeftCarouselViewHolder) {
+        if (holder instanceof LeftRouteViewHolder){
+            final LeftRouteViewHolder holder1 = (LeftRouteViewHolder) holder;
+
+            holder1.routeAsked = message.getRouteAsked();
+
+            holder1.ligneNameTV.setText(holder1.routeAsked.getLong_name_route() + " ("+holder1.routeAsked.getShort_name_route()+")");
+            holder1.pictoTV.setText(holder1.routeAsked.getType_route());
+            
+        }else if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
             if(message.getMessageType() == Message.MessageType.LeftCarousel) {
                 System.out.println(message.getList_carousel().size());
