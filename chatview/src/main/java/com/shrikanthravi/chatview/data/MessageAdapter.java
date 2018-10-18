@@ -260,8 +260,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                                                 viewHolder = new LeftCarouselViewHolder(view);
                                                             } else {
                                                                 if (viewType == 995) {
-                                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_route_layout, parent, false);
-                                                                    viewHolder = new LeftRouteViewHolder(view);
+                                                                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.left_carousel_layout, parent, false);
+                                                                    viewHolder = new LeftCarouselViewHolder(view);
                                                                 } else {
                                                                     View view = LayoutInflater.from(parent.getContext())
                                                                             .inflate(R.layout.right_audio_layout, parent, false);
