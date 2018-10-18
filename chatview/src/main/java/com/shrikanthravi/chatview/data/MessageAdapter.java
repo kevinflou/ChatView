@@ -301,6 +301,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public List<CarouselCell> list_cC;
 
 
+
         public LeftCarouselViewHolder(View view) {
             super(view);
             carouselRV = view.findViewById(R.id.carouselRV);
@@ -1429,15 +1430,24 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     holder1.handicapSupportedIV.setVisibility(View.GONE);
                 }
         }else{*/
-        if (holder instanceof LeftRouteViewHolder){
+        /*if (holder instanceof LeftRouteViewHolder){
             final LeftRouteViewHolder holder1 = (LeftRouteViewHolder) holder;
 
-            holder1.routeAsked = message.getRouteAsked();
+            RecyclerView rV = holder1.carouselRV;
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            //layoutManager.setStackFromEnd(true);
+            if (rV.getItemDecorationCount() == 0) {
+                HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                rV.addItemDecoration(horizontalSpaceDecorationItem);
+            }
+            rV.setLayoutManager(layoutManager);
+            rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+            POIAskedAdapter poiAA = new POIAskedAdapter(message.getListpoiAsked(), context);
+            rV.setAdapter(poiAA);
+            rV.scrollToPosition(0);
 
-            holder1.ligneNameTV.setText(holder1.routeAsked.getLong_name_route() + " ("+holder1.routeAsked.getShort_name_route()+")");
-            holder1.pictoTV.setText(holder1.routeAsked.getType_route());
-            
-        }else if (holder instanceof LeftCarouselViewHolder) {
+        }else */
+        if (holder instanceof LeftCarouselViewHolder) {
             final LeftCarouselViewHolder holder1 = (LeftCarouselViewHolder) holder;
             if(message.getMessageType() == Message.MessageType.LeftCarousel) {
                 System.out.println(message.getList_carousel().size());
@@ -1507,6 +1517,35 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         return false;
                     }
                 });*/
+            }else if (message.getMessageType() == Message.MessageType.LeftRouteMessage){
+
+                /*holder1.routeAsked = message.getRouteAsked();
+
+                holder1.ligneNameTV.setText(holder1.routeAsked.getLong_name_route() + " ("+holder1.routeAsked.getShort_name_route()+")");
+                holder1.pictoTV.setText(holder1.routeAsked.getType_route());*/
+
+                RecyclerView rV = holder1.carouselRV;
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false){
+                    @Override
+                    public boolean canScrollHorizontally() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean canScrollVertically() {
+                        return true;
+                    }
+                };
+                rV.setHasFixedSize(true);
+                //layoutManager.setStackFromEnd(true);//
+                if (rV.getItemDecorationCount() == 0) {
+                    HorizontalSpaceDecorationItem horizontalSpaceDecorationItem = new HorizontalSpaceDecorationItem(12);
+                    rV.addItemDecoration(horizontalSpaceDecorationItem);
+                }
+                rV.setLayoutManager(layoutManager);
+                rV.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+                RouteAskedAdapter rAA = new RouteAskedAdapter(message.getRouteAsked(), context);
+                rV.setAdapter(rAA);
             }
             /*holder1.leftTimeTV.setText(message.getTime());
 

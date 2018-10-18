@@ -45,7 +45,7 @@ public class Message {
     protected Weather weather;
     protected List<StopAsked> stopAsked;
     protected List<POIAsked> listpoiAsked;
-    protected RouteAsked routeAsked;
+    protected List<RouteAsked> routeAsked;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -195,11 +195,11 @@ public class Message {
         this.listpoiAsked = listpoiAsked;
     }
 
-    public RouteAsked getRouteAsked() {
+    public List<RouteAsked> getRouteAsked() {
         return routeAsked;
     }
 
-    public void setRouteAsked(RouteAsked routeAsked) {
+    public void setRouteAsked(List<RouteAsked> routeAsked) {
         this.routeAsked = routeAsked;
     }
 }
