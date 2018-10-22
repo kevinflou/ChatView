@@ -5,11 +5,20 @@ import android.view.View;
 import java.util.List;
 
 public class RouteAsked {
+    private String route_id;
     private String type_route;
     private String short_name_route;
     private String long_name_route;
     private List<TimesRoute> times;
     private View.OnClickListener onClickListener;
+
+    public String getRoute_id() {
+        return route_id;
+    }
+
+    public void setRoute_id(String route_id) {
+        this.route_id = route_id;
+    }
 
     public String getType_route() {
         return type_route;
