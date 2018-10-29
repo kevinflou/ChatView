@@ -28,7 +28,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/background_color2" />
+                app:srcCompat="@drawable/bottom_right_oval" />
 
             <TextView
                 android:id="@+id/nomPOITV"
