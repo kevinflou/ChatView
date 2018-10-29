@@ -24,11 +24,11 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
+                android:background="@drawable/bottom_right_oval"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bottom_right_oval" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nomPOITV"
