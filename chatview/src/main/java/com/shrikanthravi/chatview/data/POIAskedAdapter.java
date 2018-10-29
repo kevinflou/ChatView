@@ -41,7 +41,11 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
 
         holder.nomPOITV.setText(poiAsked.getName_poi());
         holder.categoryPOITV.setText(poiAsked.getCategory_poi());
-        holder.markAndAvisTV.setText(poiAsked.getRating_poi() + " ("+poiAsked.getNb_avis_poi()+")");
+        if(poiAsked.getRating_poi().equals("null")){
+            holder.markAndAvisTV.setText("Pas encore d'avis");
+        }else {
+            holder.markAndAvisTV.setText(poiAsked.getRating_poi() + " (" + poiAsked.getNb_avis_poi() + ")");
+        }
         holder.addressTV.setText(poiAsked.getAdress_poi());
         holder.distanceTV.setText(poiAsked.getDistance_poi());
         try {
