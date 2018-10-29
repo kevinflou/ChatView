@@ -24,7 +24,6 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/res_item_4"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
