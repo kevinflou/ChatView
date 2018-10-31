@@ -120,7 +120,7 @@ public class Message {
     }
 
     public String getTime() {
-        return time;
+        return "";
     }
 
     public void setTime(String time) {
