@@ -41,7 +41,7 @@ public class LignesDeserviesAdapter extends RecyclerView.Adapter<LignesDeservies
 
         holder.numeroLigneTV.setText(ld.getShort_name());
         holder.longNameTV.setText(ld.getLong_name());
-        holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ld.getColor_ligne()));
+        holder.bgLigneNumber.setBackgroundColor(Color.parseColor(ld.getColor_ligne().replace("##","#")));
     }
 
     @Override
