@@ -114,6 +114,7 @@
                 android:drawableLeft="@drawable/ic_directions_walk_white_24dp"
                 android:text="à 99.9 km"
                 android:textColor="@android:color/white"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingPOI" />
 
