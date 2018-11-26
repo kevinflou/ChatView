@@ -36,7 +36,7 @@ public class RouteAskedAdapter extends RecyclerView.Adapter<RouteAskedAdapter.Ro
     public void onBindViewHolder(RouteAskedAdapter.RouteAskedViewHolder holder, int position) {
         RouteAsked routeAsked = listRoutes.get(position);
         holder.ligneNameTV.setText(routeAsked.getLong_name_route());
-        holder.lineNbr.setText(routeAsked.getShort_name_route());
+        holder.lineNbr.setText(routeAsked.getShort_name_route()); 
         if(routeAsked.getType_route().equals("3")){
             holder.typeImageView.setImageDrawable(context.getResources().getDrawable(R.drawable.picto_bus_black));
         }else{
