@@ -55,7 +55,7 @@ public class RouteAskedAdapter extends RecyclerView.Adapter<RouteAskedAdapter.Ro
         public TextView ligneNameTV,lineNbr;
         public ImageView typeImageView;
         public Button moreInfosLigneButton;
- 
+
         public RouteAskedViewHolder(View view) {
             super(view);
             ligneNameTV = view.findViewById(R.id.ligneNameTV);
