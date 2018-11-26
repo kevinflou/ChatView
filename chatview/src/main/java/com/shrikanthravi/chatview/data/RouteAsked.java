@@ -9,6 +9,7 @@ public class RouteAsked {
     private String type_route;
     private String short_name_route;
     private String long_name_route;
+    private String color;
     private List<TimesRoute> times;
     private View.OnClickListener onClickListener;
 
@@ -58,5 +59,13 @@ public class RouteAsked {
 
     public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
