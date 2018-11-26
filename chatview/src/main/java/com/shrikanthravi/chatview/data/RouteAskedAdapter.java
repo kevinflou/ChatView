@@ -28,16 +28,20 @@ public class RouteAskedAdapter extends RecyclerView.Adapter<RouteAskedAdapter.Ro
     @Override
     public RouteAskedAdapter.RouteAskedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.left_route_layout, parent, false);
+                .inflate(R.layout.left_route_layout_v2, parent, false);
         return new RouteAskedAdapter.RouteAskedViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RouteAskedAdapter.RouteAskedViewHolder holder, int position) {
         RouteAsked routeAsked = listRoutes.get(position);
-        holder.ligneNameTV.setText(routeAsked.getShort_name_route() + " - " + routeAsked.getLong_name_route());
-        holder.distanceToLigneTV.setText("TODO m");
-        holder.pictoTV.setText(routeAsked.getType_route());
+        holder.ligneNameTV.setText(routeAsked.getLong_name_route());
+        holder.lineNbr.setText(routeAsked.getShort_name_route());
+        if(routeAsked.getType_route().equals("3")){
+            holder.typeImageView.setImageDrawable(context.getResources().getDrawable(R.drawable.picto_bus_black));
+        }else{
+            holder.typeImageView.setImageDrawable(context.getResources().getDrawable(R.drawable.tram));
+        }
 
         holder.moreInfosLigneButton.setOnClickListener(routeAsked.getOnClickListener());
     }
@@ -48,19 +52,16 @@ public class RouteAskedAdapter extends RecyclerView.Adapter<RouteAskedAdapter.Ro
     }
 
     protected class RouteAskedViewHolder extends RecyclerView.ViewHolder {
-        public TextView ligneNameTV,distanceToLigneTV,pictoTV;
-        public RecyclerView timeTablesRV;
-        public NestedScrollView scrollViewRV;
+        public TextView ligneNameTV,lineNbr;
+        public ImageView typeImageView;
         public Button moreInfosLigneButton;
 
         public RouteAskedViewHolder(View view) {
             super(view);
             ligneNameTV = view.findViewById(R.id.ligneNameTV);
-            distanceToLigneTV = view.findViewById(R.id.distanceToLigneTV);
-            pictoTV = view.findViewById(R.id.pictoTV);
-            timeTablesRV = view.findViewById(R.id.timetablesRV);
+            lineNbr = view.findViewById(R.id.lineNbr);
+            typeImageView = view.findViewById(R.id.typeImageView);
             moreInfosLigneButton = view.findViewById(R.id.moreInfosLigneButton);
-            scrollViewRV = view.findViewById(R.id.scrollViewRV);
         }
     }
 }
