@@ -44,7 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="UN TRES LONG NOM DE LIGNE MAIS PEU IMPORTE"
-        android:textColor="@android:color/white"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bgLigneNumber"
         app:layout_constraintTop_toTopOf="parent" />
