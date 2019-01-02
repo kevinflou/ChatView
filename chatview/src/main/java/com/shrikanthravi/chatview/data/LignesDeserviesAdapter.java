@@ -34,9 +34,9 @@ public class LignesDeserviesAdapter extends RecyclerView.Adapter<LignesDeservies
     public void onBindViewHolder(LignesDeserviesAdapter.LignesDeserviesViewHolder holder, int position) {
         LigneDeservie ld = listLignesDeservies.get(position);
         if(ld.getType().equals("3")) {
-            holder.typeLigneIV.setImageDrawable(context.getDrawable(R.drawable.bus_map));
+            holder.typeLigneIV.setImageDrawable(context.getDrawable(R.drawable.picto_bus_white));
         }else{
-            holder.typeLigneIV.setImageDrawable(context.getDrawable(R.drawable.tram_map));
+            holder.typeLigneIV.setImageDrawable(context.getDrawable(R.drawable.tram_white));
         }
 
         holder.numeroLigneTV.setText(ld.getShort_name());
