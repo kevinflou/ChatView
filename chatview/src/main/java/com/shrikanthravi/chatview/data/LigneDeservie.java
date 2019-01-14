@@ -6,6 +6,7 @@ public class LigneDeservie {
     public String color_ligne;
     public String long_name;
     public String type;
+    public SqlRoute sqlRoute;
 
     public String getRoute_id() {
         return route_id;
@@ -45,5 +46,13 @@ public class LigneDeservie {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public SqlRoute getSqlRoute() {
+        return sqlRoute;
+    }
+
+    public void setSqlRoute(SqlRoute sqlRoute) {
+        this.sqlRoute = sqlRoute;
     }
 }
