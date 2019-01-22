@@ -2,6 +2,7 @@ package com.shrikanthravi.chatview.data;
 
 
 import android.net.Uri;
+import android.view.View;
 
 import java.util.List;
 
@@ -46,6 +47,11 @@ public class Message {
     protected List<StopAsked> stopAsked;
     protected List<POIAsked> listpoiAsked;
     protected List<RouteAsked> routeAsked;
+    protected Boolean isTuto;
+    protected View.OnClickListener tuto1OnClick;
+    protected View.OnClickListener tuto2OnClick;
+    protected View.OnClickListener tuto3OnClick;
+    protected View.OnClickListener tuto4OnClick;
 
     public enum MessageType{
         LeftSimpleMessage,
@@ -64,7 +70,8 @@ public class Message {
         LeftStopMessage,
         LeftTypingMessage,
         LeftPOIMessage,
-        LeftRouteMessage
+        LeftRouteMessage,
+        TutoHelp
     }
 
     public Message(){
@@ -201,6 +208,46 @@ public class Message {
 
     public void setRouteAsked(List<RouteAsked> routeAsked) {
         this.routeAsked = routeAsked;
+    }
+
+    public View.OnClickListener getTuto1OnClick() {
+        return tuto1OnClick;
+    }
+
+    public void setTuto1OnClick(View.OnClickListener tuto1OnClick) {
+        this.tuto1OnClick = tuto1OnClick;
+    }
+
+    public View.OnClickListener getTuto2OnClick() {
+        return tuto2OnClick;
+    }
+
+    public void setTuto2OnClick(View.OnClickListener tuto2OnClick) {
+        this.tuto2OnClick = tuto2OnClick;
+    }
+
+    public View.OnClickListener getTuto3OnClick() {
+        return tuto3OnClick;
+    }
+
+    public void setTuto3OnClick(View.OnClickListener tuto3OnClick) {
+        this.tuto3OnClick = tuto3OnClick;
+    }
+
+    public View.OnClickListener getTuto4OnClick() {
+        return tuto4OnClick;
+    }
+
+    public void setTuto4OnClick(View.OnClickListener tuto4OnClick) {
+        this.tuto4OnClick = tuto4OnClick;
+    }
+
+    public Boolean getTuto() {
+        return isTuto;
+    }
+
+    public void setTuto(Boolean tuto) {
+        isTuto = tuto;
     }
 }
 
