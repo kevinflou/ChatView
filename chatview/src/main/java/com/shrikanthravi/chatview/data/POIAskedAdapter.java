@@ -54,7 +54,7 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
             holder.ratingPOI.setRating(0.0f);
         }
         holder.moreInfosButton.setOnClickListener(poiAsked.getOnClickListener());
-        if(poiAsked.getLink_photo_poi() != null) {
+        if(poiAsked.getLink_photo_poi() != null && !poiAsked.getLink_photo_poi().equals("")) {
             Picasso.with(context).load(poiAsked.getLink_photo_poi()).into(holder.principalPicPOI);
         }else{
             //PlaceHolder Pic
