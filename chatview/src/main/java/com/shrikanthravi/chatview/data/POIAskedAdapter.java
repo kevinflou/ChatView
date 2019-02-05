@@ -58,7 +58,7 @@ public class POIAskedAdapter extends RecyclerView.Adapter<POIAskedAdapter.POIAsk
             Picasso.with(context).load(poiAsked.getLink_photo_poi()).into(holder.principalPicPOI);
         }else{
             //PlaceHolder Pic
-
+            Picasso.with(context).load(R.drawable.placeholder_stop_v2).into(holder.principalPicPOI);
         }
     }
 
